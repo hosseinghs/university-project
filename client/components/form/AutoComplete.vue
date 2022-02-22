@@ -1,0 +1,10 @@
+<template>
+  <v-autocomplete
+    v-bind="$attrs"
+    v-on="$listeners"
+    dense
+    rounded
+    outlined
+    background-color="light"
+  />
+</template>
