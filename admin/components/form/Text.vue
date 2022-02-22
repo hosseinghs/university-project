@@ -1,0 +1,11 @@
+<template>
+  <v-text-field
+    v-bind="$attrs"
+    outlined
+    color="info"
+    hide-details="auto"
+    v-on="$listeners"
+    :auto-complete="false"
+    class="my-4"
+  />
+</template>

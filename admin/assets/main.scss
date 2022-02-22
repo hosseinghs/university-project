@@ -1,0 +1,26 @@
+@font-face {
+  font-family: 'Gandom';
+  src: url('./font/Gandom.ttf');
+}
+
+.page-enter-active,
+.page-leave-active,
+.layout-enter-active,
+.layout-leave-active {
+  transition: opacity 0.5s;
+}
+
+.page-enter,
+.page-leave-to,
+.layout-enter,
+.layout-leave-active {
+  opacity: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 20px;
+}
