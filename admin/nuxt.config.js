@@ -1,23 +1,5 @@
-import colors from 'vuetify/es5/util/colors';
-import fa from 'vuetify/es5/locale/fa';
-import {
-  mdiPlus,
-  mdiTrashCanOutline,
-  mdiMenuDown,
-  mdiCloseThick,
-  mdiClose,
-  mdiMagnify,
-  mdiAccountCircle,
-  mdiAccountCog,
-  mdiLogoutVariant,
-  mdiShopping,
-  mdiMenu,
-  mdiEmail,
-  mdiLock,
-  mdiAccount,
-  mdiEye,
-  mdiEyeOff,
-} from '@mdi/js';
+import colors from 'vuetify/es5/util/colors'
+import fa from 'vuetify/es5/locale/fa'
 export default {
   ssr: false,
   head: {
@@ -38,7 +20,7 @@ export default {
 
   css: ['~/assets/main.scss'],
   env: {
-    baseUrl: 'http://localhost:1000/',
+    baseUrl: 'https://localhost:7037/',
   },
   plugins: ['~/plugins/apiCaller'],
 
@@ -58,25 +40,7 @@ export default {
     },
     icons: {
       iconfont: 'mdiSvg',
-      values: {
-        plus: mdiPlus,
-        trashCan: mdiTrashCanOutline,
-        menuDown: mdiMenuDown,
-        closeThick: mdiCloseThick,
-        close: mdiClose,
-        search: mdiMagnify,
-        account: mdiAccountCircle,
-        profile: mdiAccountCog,
-        logout: mdiLogoutVariant,
-        basket: mdiShopping,
-        menuBar: mdiMenu,
-        email: mdiEmail,
-        password: mdiLock,
-        user: mdiAccount,
-        eye: mdiEye,
-        eyeClose: mdiEyeOff,
-      },
-    },
+   },
     theme: {
       dark: false,
       themes: {
@@ -94,4 +58,4 @@ export default {
   },
 
   build: {},
-};
+}
