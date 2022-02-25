@@ -7,16 +7,9 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
 import lazyCaller from '../mixins/lazyCaller'
 export default {
   name: 'DefaultLayout',
   mixins: [lazyCaller],
-  computed: {
-    ...mapGetters('products', ['sideBarProducts']),
-  },
-  methods: {
-    ...mapActions('register', ['setLoginState', 'setUserProfileData']),
-  },
 }
 </script>

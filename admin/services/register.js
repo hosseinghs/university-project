@@ -1,3 +1,3 @@
-export function signInUserApi(api, user) {
+export function loginUserApi(api, user) {
   return api.$post('admin/login', user)
 }

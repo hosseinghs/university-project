@@ -1,5 +1,22 @@
 <template>
-  <div class="mt-10"></div>
+  <v-card>
+    <v-container>
+      <v-row>
+        <v-col>
+          <FormText
+            label="نام کاربری"
+            @change="setUserLoginData({ k: 'userName', v: $event })"
+          />
+        </v-col>
+        <v-col>
+          <FormText
+            label="رمزعبور"
+            @change="setUserLoginData({ k: 'password', v: $event })"
+          />
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-card>
 </template>
 
 <script>
