@@ -20,7 +20,7 @@ export default {
 
   css: ['~/assets/main.scss'],
   env: {
-    baseUrl: 'https://localhost:7037/',
+    baseUrl: 'https://localhost:1000',
   },
   plugins: ['~/plugins/apiCaller'],
 
@@ -40,7 +40,7 @@ export default {
     },
     icons: {
       iconfont: 'mdiSvg',
-   },
+    },
     theme: {
       dark: false,
       themes: {

@@ -7,20 +7,21 @@ router.get("/createArticle", (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
+  console.log("kir", req);
   const admin = {
     userName: "hghs",
     password: "qazqaz",
   };
   const { userName, password } = req.body;
   if (!(userName === admin.userName && password === admin.password))
-    res
+    return res
       .status(400)
       .send({ success: false, des: "رمزعبور یا نام کاربری اشتباه است" });
   const token = jwt.sign({ userName, password }, "secret", {
     noTimestamp: false,
     expiresIn: "1h",
   });
-  res
+  return res
     .status(200)
     .send({ res: token, success: true, des: "با موفیقت وارد شدید" });
 });

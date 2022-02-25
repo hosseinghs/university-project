@@ -1,11 +1,12 @@
-var express = require("express");
+const express = require("express");
+const app = express();
+app.listen(1000);
 require("./utils/db")();
-var indexRouter = require("./routes/index");
-
-var app = express();
-
+const cors = require("cors");
+app.use(cors());
 app.use(express.json());
-
+const indexRouter = require("./routes/index");
 app.use("/", indexRouter);
 
-module.exports = app;
+
+
