@@ -1,4 +1,4 @@
-import { createObjWithDefaultValues } from '~/models/general'
+import { createObjWithDefaultValues } from '~/utils/general'
 export class Login {
   constructor(options) {
     const defaults = {
