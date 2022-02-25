@@ -12,8 +12,17 @@ router.post("/login", async (req, res) => {
     password: "qazqaz",
   };
   const { userName, password } = req.body;
-  if (!(admin.userName === "hghs" && admin.password === "qazqaz"))
-    res.status(400).send({ success: false, des: "با موفقیت وارد شدید!" });
+  if (!(userName === admin.userName && password === admin.password))
+    res
+      .status(400)
+      .send({ success: false, des: "رمزعبور یا نام کاربری اشتباه است" });
+  const token = jwt.sign({ userName, password }, "secret", {
+    noTimestamp: false,
+    expiresIn: "1h",
+  });
+  res
+    .status(200)
+    .send({ res: token, success: true, des: "با موفیقت وارد شدید" });
 });
 
 module.exports = router;
