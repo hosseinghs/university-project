@@ -1,4 +1,4 @@
-import { signUpUserApi, signInUserApi } from '../services/register'
+import { signUpUserApi, signInUserApi } from '~/services/register'
 import { Signup, Login } from '~/models/register'
 export default {
   namespaced: true,
