@@ -1,13 +1,11 @@
-var express = require('express');
-
-var indexRouter = require('./routes/index');
-
+var express = require("express");
+require("./utils/db")();
+var indexRouter = require("./routes/index");
 
 var app = express();
 
 app.use(express.json());
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use("/", indexRouter);
 
 module.exports = app;
