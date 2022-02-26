@@ -6,6 +6,6 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 const indexRouter = require("./routes/index");
-const adminLogin = require("./routes/admin/login");
+const adminLoginRouter = require("./routes/admin/login");
 app.use("/", indexRouter);
-app.use("/admin", adminLogin);
+app.use("/admin", adminLoginRouter);

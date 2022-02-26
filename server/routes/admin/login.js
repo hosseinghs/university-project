@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const jwt = require("jsonwebtoken");
 
 router.post("/login", async (req, res) => {
   const admin = {
@@ -8,6 +7,7 @@ router.post("/login", async (req, res) => {
     password: "qazqaz",
   };
   const { userName, password } = req.body;
+  console.log(userName, password);
   if (!(userName === admin.userName && password === admin.password))
     return res
       .status(400)
