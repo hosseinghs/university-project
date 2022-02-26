@@ -24,12 +24,14 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import { mustFillRule } from '~/utils/general'
 export default {
   name: 'LoginPage',
   computed: {
     ...mapState('register', ['isLoggedIn']),
   },
   methods: {
+    mustFillRule,
     ...mapActions('register', ['loginUser', 'setUserLoginData']),
     submitForm() {
       if (this.$refs.login.validate()) this.loginUser()
