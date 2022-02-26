@@ -20,7 +20,7 @@ export default {
 
   css: ['~/assets/main.scss'],
   env: {
-    baseUrl: 'https://localhost:1000',
+    baseUrl: 'http://localhost:1000/',
   },
   plugins: ['~/plugins/apiCaller'],
 
