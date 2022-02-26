@@ -27,9 +27,12 @@ export default {
     async loginUser({ state, dispatch }) {
       const user = state.loginUserData
       async function apiCall(api) {
-        const { status } = await loginUserApi(api, user)
-        if (status === 200) dispatch('setLoggedInState', true)
-        return true
+        const { success, res } = await loginUserApi(api, user)
+        if (success) {
+          dispatch('setLoggedInState', true)
+          window.localStorage.setItem('token', res)
+        }
+        return success
       }
       return await this.$apiCaller(apiCall)()
     },
