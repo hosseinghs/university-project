@@ -2,12 +2,7 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 
-router.get("/createArticle", (req, res) => {
-  console.log(req, res);
-});
-
 router.post("/login", async (req, res) => {
-  console.log("kir", req);
   const admin = {
     userName: "hghs",
     password: "qazqaz",
