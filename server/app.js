@@ -5,7 +5,3 @@ require("./utils/db")();
 const cors = require("cors");
 app.use(cors());
 app.use(express.json());
-const indexRouter = require("./routes/index");
-const adminLoginRouter = require("./routes/admin/login");
-app.use("/", indexRouter);
-app.use("/admin", adminLoginRouter);
