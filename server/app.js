@@ -8,3 +8,7 @@ app.use(express.json());
 
 const adminCategoryRoutes = require("./routes/admin/category");
 app.use("/admin/category", adminCategoryRoutes);
+
+
+const adminLoginRoutes = require("./routes/admin/login");
+app.use("/admin/login", adminLoginRoutes);
