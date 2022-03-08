@@ -7,7 +7,6 @@
             <FormText
               label="شماره تلفن"
               dense
-              :rules="[mustFillRule, mobileLengthRule, PhoneNumberRule]"
               @change="setUserLoginData({ k: 'phoneNumber', v: $event })"
             />
           </v-col>
