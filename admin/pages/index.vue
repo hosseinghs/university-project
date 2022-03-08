@@ -7,6 +7,7 @@
             <FormText
               label="شماره تلفن"
               dense
+              :rules="[mustFillRule, mobileLengthRule, PhoneNumberRule]"
               @change="setUserLoginData({ k: 'phoneNumber', v: $event })"
             />
           </v-col>
@@ -14,11 +15,12 @@
             <FormText
               label="رمزعبور"
               dense
+              :rules="[mustFillRule]"
               @change="setUserLoginData({ k: 'password', v: $event })"
             />
           </v-col>
         </v-row>
-        <v-btn block class="primary mt-5">ورود</v-btn>
+        <v-btn block type="submit" class="primary mt-5">ورود</v-btn>
       </v-form>
     </v-card>
   </v-container>
@@ -26,16 +28,22 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import { mustFillRule } from '~/utils/general'
+import {
+  mustFillRule,
+  mobileLengthRule,
+  PhoneNumberRule,
+} from '~/utils/validations'
 export default {
   name: 'LoginPage',
   layout: 'login',
   computed: {
-    ...mapState('register', ['isLoggedIn']),
+    ...mapState('login', ['isLoggedIn']),
   },
   methods: {
     mustFillRule,
-    ...mapActions('register', ['loginUser', 'setUserLoginData']),
+    mobileLengthRule,
+    PhoneNumberRule,
+    ...mapActions('login', ['loginUser', 'setUserLoginData']),
     submitForm() {
       if (this.$refs.login.validate()) this.loginUser()
     },
