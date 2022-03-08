@@ -29,6 +29,7 @@ import { mapState, mapActions } from 'vuex'
 import { mustFillRule } from '~/utils/general'
 export default {
   name: 'LoginPage',
+  layout: 'login',
   computed: {
     ...mapState('register', ['isLoggedIn']),
   },
