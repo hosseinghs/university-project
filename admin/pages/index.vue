@@ -1,25 +1,27 @@
 <template>
-  <v-card>
-    <v-container>
+  <v-container>
+    <v-card class="px-4 py-4 mx-auto" width="500">
       <v-form ref="login" @submit.prevent="submitForm()">
         <v-row>
-          <v-col>
+          <v-col class="py-0" cols="12">
             <FormText
-              label="نام کاربری"
-              @change="setUserLoginData({ k: 'userName', v: $event })"
+              label="شماره تلفن"
+              dense
+              @change="setUserLoginData({ k: 'phoneNumber', v: $event })"
             />
           </v-col>
-          <v-col>
+          <v-col class="py-0" cols="12">
             <FormText
               label="رمزعبور"
+              dense
               @change="setUserLoginData({ k: 'password', v: $event })"
             />
           </v-col>
         </v-row>
-        <button type="submit">ok</button>
+        <v-btn block class="primary mt-5">ورود</v-btn>
       </v-form>
-    </v-container>
-  </v-card>
+    </v-card>
+  </v-container>
 </template>
 
 <script>
