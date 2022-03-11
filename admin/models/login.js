@@ -8,3 +8,15 @@ export class Login {
     createObjWithDefaultValues(this, defaults, options)
   }
 }
+
+export class Admin {
+  constructor(options) {
+    const defaults = {
+      id: null,
+      firstName: null,
+      lastName: null,
+      phoneNumber: null,
+    }
+    createObjWithDefaultValues(this, defaults, options)
+  }
+}
