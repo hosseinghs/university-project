@@ -70,9 +70,13 @@ export default {
   },
   methods: {
     mustFillRule,
-    ...mapActions('article', ['clearArticle', 'setNewArticleData']),
+    ...mapActions('article', [
+      'clearArticle',
+      'setNewArticleData',
+      'createArticle',
+    ]),
     submitForm() {
-      if (this.$refs.addArticleForm.validate()) console.log('ok')
+      if (this.$refs.addArticleForm.validate()) this.createArticle()
     },
   },
 }
