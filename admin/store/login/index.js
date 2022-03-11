@@ -1,11 +1,12 @@
 import { loginUserApi } from '~/services/login'
-import { Login } from '~/models/login'
+import { Login, Admin } from '~/models/login'
 export default {
   namespaced: true,
 
   state: () => ({
     loginUserData: new Login(),
     isLoggedIn: false,
+    admin: new Admin(),
   }),
 
   mutations: {
@@ -14,6 +15,9 @@ export default {
     },
     SET_LOGGEDIN_STATE(state, bool) {
       state.isLoggedIn = bool
+    },
+    SET_ADMIN_INFO(state, admin) {
+      state.admin = Object.assign({}, admin)
     },
   },
 
@@ -24,13 +28,17 @@ export default {
     setLoggedInState({ commit }, bool) {
       commit('SET_LOGGEDIN_STATE', bool)
     },
+    setAdminInfo({ commit }, admin) {
+      commit('SET_ADMIN_INFO', admin)
+    },
     async loginUser({ state, dispatch }) {
       const user = state.loginUserData
       async function apiCall(api) {
         const { success, res } = await loginUserApi(api, user)
         if (success) {
+          window.localStorage.setItem('token', res.token)
+          dispatch('setAdminInfo', res.admin)
           dispatch('setLoggedInState', true)
-          if (res) window.localStorage.setItem('token', res)
         }
         return success
       }
