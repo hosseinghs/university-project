@@ -25,11 +25,21 @@ export default {
     CLEAR_ARTICLE_STATE(state) {
       state.article = new Article()
     },
+    SET_NEW_ARTICLE_DATA(state, { k, v }) {
+      state.article[k] = v
+    },
   },
   actions: {
+    
     clearArticle({ commit }) {
       commit('CLEAR_ARTICLE_STATE')
     },
+    setNewArticleData({ commit }, { k, v }) {
+      commit('SET_NEW_ARTICLE_DATA', { k, v })
+    },
+
+    /* -------------------------------- apiCalls -------------------------------- */
+
     async getCategories({ commit }) {
       async function apiCall(api) {
         const { res, success } = await getCategoryApi(api)
