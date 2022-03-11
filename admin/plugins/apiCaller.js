@@ -82,15 +82,17 @@ export default function ({ $axios, store, env, redirect }, inject) {
   const api = $axios.create({ baseURL: env.baseUrl, withCredentials: false })
 
   /* -------------------------- add token to the api -------------------------- */
- 
+
   api.onRequest((req) => {
     const token = window.localStorage.getItem('token')
-    const bearer = `bearer ${JSON.parse(token)}`
-    req.headers.authorization = bearer
+    if (token) {
+      const bearer = `bearer ${JSON.parse(token)}`
+      req.headers.authorization = bearer
+    }
   })
 
   /* ------------------------------ handle api errors ------------------------------ */
-  
+
   api.onResponseError((err) => {
     if (err.response) {
       const payload = {
@@ -107,7 +109,7 @@ export default function ({ $axios, store, env, redirect }, inject) {
   })
 
   /* ----------------------- handle api success response ---------------------- */
-  
+
   api.onResponse((res) => {
     const msg = res.data.des
     if (msg && msg.length) {
