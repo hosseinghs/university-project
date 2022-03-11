@@ -6,8 +6,8 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 
-const adminArticelsRoutes = require("./routes/admin/articels");
-app.use("/admin/category", adminArticelsRoutes);
+const adminArticlesRoutes = require("./routes/admin/articles");
+app.use("/admin/articles", adminArticlesRoutes);
 
 const adminLoginRoutes = require("./routes/admin/login");
 app.use("/admin/login", adminLoginRoutes);
