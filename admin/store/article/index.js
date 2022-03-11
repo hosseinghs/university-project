@@ -1,11 +1,12 @@
 import { addToArr } from '~/utils/general'
+import { Article } from '~/models/article'
 import { createArticleApi, getCategoryApi } from '~/services/articles'
 export default {
   namespaced: true,
   state: () => ({
     categories: [],
     articles: [],
-    article: {},
+    article: new Article(),
   }),
   mutations: {
     SET_CATEGORIES(state, categories) {
@@ -21,8 +22,14 @@ export default {
     ADD_ARTICLE_TO_THE_LIST(state, newArticle) {
       state.articles.push(newArticle)
     },
+    CLEAR_ARTICLE_STATE(state) {
+      state.article = new Article()
+    },
   },
   actions: {
+    clearArticle({ commit }) {
+      commit('CLEAR_ARTICLE_STATE')
+    },
     async getCategories({ commit }) {
       async function apiCall(api) {
         const { res, success } = await getCategoryApi(api)
