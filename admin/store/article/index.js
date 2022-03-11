@@ -1,6 +1,11 @@
 import { addToArr } from '~/utils/general'
 import { Article } from '~/models/article'
-import { createArticleApi, getCategoryApi } from '~/services/articles'
+import {
+  createArticleApi,
+  getCategoryApi,
+  getArticlesApi,
+} from '~/services/articles'
+
 export default {
   namespaced: true,
   state: () => ({
@@ -30,7 +35,6 @@ export default {
     },
   },
   actions: {
-    
     clearArticle({ commit }) {
       commit('CLEAR_ARTICLE_STATE')
     },
@@ -48,6 +52,16 @@ export default {
       }
       return await this.$apiCaller(apiCall)()
     },
+
+    async getArticles({ commit }) {
+      async function apiCall(api) {
+        const { success, res } = await getArticlesApi(api)
+        if (success) commit('SET_ARTICLES', res)
+        return success
+      }
+      return await this.$apiCaller(apiCall)()
+    },
+
     async createArticle({ state, commit }) {
       const article = state.article
       async function apiCall(api) {
