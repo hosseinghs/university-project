@@ -1,7 +1,9 @@
+const baseUrl = 'articles'
+
 export function createArticleApi(api, article) {
-  return api.$post('create', article)
+  return api.$post(baseUrl + '/create', article)
 }
 
 export function getCategoryApi(api) {
-  return api.$get('articles')
+  return api.$get(baseUrl)
 }
