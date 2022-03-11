@@ -1,0 +1,24 @@
+const jwt = require("jsonwebtoken");
+
+module.exports = function checkToken(req, res, next) {
+  const token = req.header("authorization");
+  if (!token)
+    return res
+      .status(401)
+      .send({ success: false, des: "لطفا دوباره وارد شوید!" });
+  try {
+    const code = token.split("bearer ")[1];
+    console.log(code);
+    if (code) {
+      jwt.verify(code, "secret", (err) => {
+        if (err)
+          return res
+            .status(403)
+            .send({ success: false, des: "مجددا وارد شوید" });
+      });
+      next();
+    }
+  } catch (ex) {
+    res.status(401).send({ success: false, des: "Invalid token" });
+  }
+};
