@@ -83,14 +83,13 @@ export default function ({ $axios, store, env, redirect }, inject) {
 
   /* -------------------------- add token to the api -------------------------- */
 
-  // api.onRequest((req) => {
-  //   console.log('koskeshe kioni')
-  //   const token = window.localStorage.getItem('token')
-  //   if (token) {
-  //     const bearer = `bearer ${JSON.parse(token)}`
-  //     req.headers.authorization = bearer
-  //   }
-  // })
+  api.onRequest((req) => {
+    const token = window.localStorage.getItem('token')
+    if (token) {
+      const bearer = `bearer ${token}`
+      req.headers.authorization = bearer
+    }
+  })
 
   /* ------------------------------ handle api errors ------------------------------ */
 
