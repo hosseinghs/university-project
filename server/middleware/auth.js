@@ -8,7 +8,6 @@ module.exports = function checkToken(req, res, next) {
       .send({ success: false, des: "لطفا دوباره وارد شوید!" });
   try {
     const code = token.split("bearer ")[1];
-    console.log(code);
     if (code) {
       jwt.verify(code, "secret", (err) => {
         if (err)
