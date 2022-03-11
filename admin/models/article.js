@@ -4,9 +4,10 @@ export class Article {
   constructor(options) {
     const defaults = {
       name: null,
-      categpry: null,
+      categoryId: null,
       author: null,
-      createdDate: null,
+      createdDate: new Date().toISOString(),
+      text: null,
     }
     createObjWithDefaultValues(this, defaults, options)
   }
