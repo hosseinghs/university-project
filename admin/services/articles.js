@@ -5,5 +5,9 @@ export function createArticleApi(api, article) {
 }
 
 export function getCategoryApi(api) {
-  return api.$get(baseUrl)
+  return api.$get(baseUrl + '/category')
+}
+
+export function getArticlesApi(api) {
+  return api.$get(baseUrl + '/get')
 }
