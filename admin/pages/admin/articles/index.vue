@@ -1,10 +1,17 @@
 <template>
-  <div></div>
+  <div>heloooo</div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
-    name:'ArticlesPage'
+  name: 'ArticlesPage',
+  created() {
+    this.getCategories()
+  },
+  methods: {
+    ...mapActions('article', ['getCategories']),
+  },
 }
 </script>
 
