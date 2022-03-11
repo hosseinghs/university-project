@@ -8,12 +8,15 @@ router.post("/", async (req, res) => {
     return res
       .status(400)
       .send({ success: false, des: "رمزعبور و یا شماره تلفن اشتباه است!" });
-  console.log(phoneNumber, password);
-  const user = await sql.query(
+  const sqlRes = await sql.query(
     `SELECT * FROM admin where phoneNumber=${phoneNumber}`
   );
-  console.log(user.recordsets);
-  return res.status(200).send({ success: true, res: user });
+  const admin = sqlRes.recordsets[0][0];
+  return res.status(200).send({
+    success: true,
+    res: admin,
+    des: `${admin.firstName} ${admin.lastName} خوش آمدید`,
+  });
 });
 
 module.exports = router;
