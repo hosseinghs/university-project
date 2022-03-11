@@ -10,11 +10,13 @@ router.get("/", checkToken, async (_, res) => {
 });
 
 router.post("/create", checkToken, async (req, res) => {
-  const { categoryName } = req.body;
-  console.log(categoryName);
-  return "";
-  // const categoryList = await sql.query("SELECT * FROM category");
-  // res.status(200).send({ success: true, res: categoryList });
+  const { title, categoryId, createdDate, author, text } = req.body;
+
+  sql.query`INSERT INTO article ( title , categoryId , author , date , text ) VALUES (${title},${categoryId},${author},${createdDate},${text})`,
+    (err, res) => {
+      if (err) res.status(400).send({ success: false, des: err });
+      return res.send({ success: true, des: "با موفقیت افزوده شد!" });
+    };
 });
 
 module.exports = router;
