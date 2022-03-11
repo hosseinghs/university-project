@@ -1,0 +1,59 @@
+<template>
+  <v-container>
+    <v-card elevation="0" class="px-15">
+      <v-row align="center">
+        <v-col cols="5">
+          <v-form ref="addArticleForm" @submit.prevent="submitForm()">
+            <FormText :rules="[mustFillRule]" label="عنوان" />
+            <FormText :rules="[mustFillRule]" label="نویسنده" />
+            <FormAutoComplete
+              :items="categories"
+              :rules="[mustFillRule]"
+              item-text="name"
+              label="دسته بندی"
+            />
+            <FormBtnPrime type="submit" class="t-white px-10 mt-10">
+              افزودن
+            </FormBtnPrime>
+          </v-form>
+        </v-col>
+        <v-col cols="4">
+          <v-img
+            class="mx-auto"
+            white="300"
+            contain
+            :src="require('~/assets/img/article.svg')"
+          />
+        </v-col>
+      </v-row>
+    </v-card>
+  </v-container>
+</template>
+
+<script>
+import { mapState, mapActions } from 'vuex'
+import { mustFillRule } from '~/utils/validations'
+export default {
+  name: 'AddNewArticleComponent',
+
+  computed: {
+    ...mapState(['isModalVisible']),
+    ...mapState('article', ['categories']),
+  },
+  watch: {
+    isModalVisible(val) {
+      if (!val) {
+        this.clearArticle()
+        this.$refs.addArticleForm.resetValidation()
+      }
+    },
+  },
+  methods: {
+    mustFillRule,
+    ...mapActions('article', ['clearArticle']),
+    submitForm() {
+      if (this.$refs.addArticleForm.validate()) console.log('ok')
+    },
+  },
+}
+</script>
