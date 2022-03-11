@@ -16,11 +16,15 @@ import { mapActions } from 'vuex'
 export default {
   name: 'ArticlesPage',
   created() {
-    this.getCategories()
+    this.fireApies()
   },
   methods: {
     ...mapActions(['setModalState']),
-    ...mapActions('article', ['getCategories']),
+    ...mapActions('article', ['getCategories', 'getArticles']),
+    fireApies() {
+      const promises = [this.getCategories(), this.getArticles()]
+      Promise.all(promises)
+    },
   },
 }
 </script>
