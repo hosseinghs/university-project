@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const sql = require("mssql");
+const { createToken } = require("../../utils/jwt");
 
 router.post("/", async (req, res) => {
   const { phoneNumber, password } = req.body;
@@ -12,9 +13,10 @@ router.post("/", async (req, res) => {
     `SELECT * FROM admin where phoneNumber=${phoneNumber}`
   );
   const admin = sqlRes.recordsets[0][0];
+  const token = createToken(admin);
   return res.status(200).send({
     success: true,
-    res: admin,
+    res: { admin, token },
     des: `${admin.firstName} ${admin.lastName} خوش آمدید`,
   });
 });
