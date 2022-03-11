@@ -12,5 +12,10 @@
 <script>
 export default {
   name: 'DefaultLayout',
+  middleware({ store, redirect }) {
+    const token = window.localStorage.getItem('token')
+    if (token) redirect('/admin/articels')
+    store.dispatch('login/setLoggedInState', !!token)
+  },
 }
 </script>
