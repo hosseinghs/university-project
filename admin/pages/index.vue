@@ -2,6 +2,9 @@
   <v-container>
     <v-card class="px-4 py-4 mx-auto" width="500">
       <v-form ref="login" @submit.prevent="submitForm()">
+        <h2>به ادمین خوش آمدید!</h2>
+        <h5>برای ادامه وارد شوید</h5>
+        <v-divider class="mt-2 mb-5"></v-divider>
         <v-row>
           <v-col class="py-0" cols="12">
             <FormText
