@@ -12,6 +12,7 @@
               item-text="name"
               label="دسته بندی"
             />
+            <FormCkEditor label="متن مقاله" />
             <FormBtnPrime type="submit" class="t-white px-10 mt-10">
               افزودن
             </FormBtnPrime>
