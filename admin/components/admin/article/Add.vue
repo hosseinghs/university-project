@@ -4,15 +4,34 @@
       <v-row align="center">
         <v-col cols="5">
           <v-form ref="addArticleForm" @submit.prevent="submitForm()">
-            <FormText :rules="[mustFillRule]" label="عنوان" />
-            <FormText :rules="[mustFillRule]" label="نویسنده" />
+            <FormText
+              :rules="[mustFillRule]"
+              label="عنوان"
+              @change="setNewArticleData({ k: 'title', v: $event })"
+            />
+            <FormText
+              :rules="[mustFillRule]"
+              label="نویسنده"
+              @change="setNewArticleData({ k: 'author', v: $event })"
+            />
             <FormAutoComplete
+              item-text="name"
+              item-value="id"
+              label="دسته بندی"
               :items="categories"
               :rules="[mustFillRule]"
-              item-text="name"
-              label="دسته بندی"
+              @change="setNewArticleData({ k: 'categoryId', v: $event })"
             />
-            <FormCkEditor label="متن مقاله" />
+            <FormCkEditor
+              fill-err
+              label="متن مقاله"
+              @input="
+                setNewArticleData({
+                  k: 'text',
+                  v: $event,
+                })
+              "
+            />
             <FormBtnPrime type="submit" class="t-white px-10 mt-10">
               افزودن
             </FormBtnPrime>
@@ -51,7 +70,7 @@ export default {
   },
   methods: {
     mustFillRule,
-    ...mapActions('article', ['clearArticle']),
+    ...mapActions('article', ['clearArticle', 'setNewArticleData']),
     submitForm() {
       if (this.$refs.addArticleForm.validate()) console.log('ok')
     },
