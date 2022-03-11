@@ -3,7 +3,8 @@ const router = express.Router();
 const sql = require("mssql");
 
 router.get("/", async (_, res) => {
-  const categoryList = await sql.query("SELECT * FROM category");
+  const sqlRes = await sql.query("SELECT * FROM category");
+  const categoryList = sqlRes.recordsets[0];
   res.status(200).send({ success: true, res: categoryList });
 });
 
