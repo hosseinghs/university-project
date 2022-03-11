@@ -47,7 +47,10 @@ export default {
     PhoneNumberRule,
     ...mapActions('login', ['loginUser', 'setUserLoginData']),
     submitForm() {
-      if (this.$refs.login.validate()) this.loginUser()
+      if (this.$refs.login.validate()) {
+        const res = this.loginUser()
+        if (res) this.$router.push({ path: '/admin/articels' })
+      }
     },
   },
 }
