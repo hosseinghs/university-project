@@ -46,10 +46,10 @@ export default {
     mobileLengthRule,
     PhoneNumberRule,
     ...mapActions('login', ['loginUser', 'setUserLoginData']),
-    submitForm() {
+   async submitForm() {
       if (this.$refs.login.validate()) {
-        const res = this.loginUser()
-        if (res) this.$router.push({ path: '/admin/articels' })
+        const res = await this.loginUser()
+        if (res) this.$router.push({ path: '/admin/articles' })
       }
     },
   },
