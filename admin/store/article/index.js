@@ -1,9 +1,10 @@
 import { addToArr } from '~/utils/general'
 import { Article } from '~/models/article'
 import {
-  createArticleApi,
   getCategoryApi,
   getArticlesApi,
+  createArticleApi,
+  changeArticlePublishmentStateApi,
 } from '~/services/articles'
 
 export default {
@@ -47,6 +48,10 @@ export default {
     SET_NEW_ARTICLE_DATA(state, { k, v }) {
       state.article[k] = v
     },
+    CHANGE_ARTICLE_PUBLISHMENT_STATE(state, id) {
+      const article = state.articles.find((article) => article.id === id)
+      article.isPublished = !article.isPublished
+    },
   },
   actions: {
     clearArticle({ commit }) {
@@ -81,6 +86,15 @@ export default {
       async function apiCall(api) {
         const { res, success } = await createArticleApi(api, article)
         if (success) commit('ADD_ARTICLE_TO_THE_LIST', res)
+        return success
+      }
+      return await this.$apiCaller(apiCall)()
+    },
+
+    async changeArticlePublishmentState({ commit }, id) {
+      async function apiCall(api) {
+        const { success } = await changeArticlePublishmentStateApi(api, id)
+        if (success) commit('CHANGE_ARTICLE_PUBLISHMENT_STATE', id)
         return success
       }
       return await this.$apiCaller(apiCall)()
