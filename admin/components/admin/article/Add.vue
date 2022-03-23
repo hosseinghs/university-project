@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-card elevation="0" class="px-15">
+    <v-card elevation="0">
       <v-row align="center">
         <v-col>
           <v-form ref="addArticleForm" @submit.prevent="submitForm()">
