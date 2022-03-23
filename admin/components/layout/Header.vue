@@ -1,6 +1,10 @@
 <template>
   <v-app-bar elevation="0" app>
-    <FormBtnCancel outlined @click.stop="logout()"> خروج </FormBtnCancel>
+    <v-container>
+      <v-col class="text-end">
+        <FormBtnCancel outlined @click.stop="logout()"> خروج </FormBtnCancel>
+      </v-col>
+    </v-container>
   </v-app-bar>
 </template>
 
