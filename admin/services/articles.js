@@ -11,3 +11,7 @@ export function getCategoryApi(api) {
 export function getArticlesApi(api, type) {
   return api.$get(baseUrl + `/get?type=${type}`)
 }
+
+export function changeArticlePublishmentStateApi(api, id) {
+  return api.$put(baseUrl + `/changePublishmentState?id=${id}`)
+}
