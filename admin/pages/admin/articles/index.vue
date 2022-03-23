@@ -3,7 +3,7 @@
     <v-card elevation="0" class="bg-transparent">
       <v-col>
         <v-row align="center">
-          <v-col>
+          <v-col lg="2">
             <FormAutoComplete
               v-model="articleType"
               label="نوع"
@@ -12,7 +12,7 @@
               :items="articleTypes"
             />
           </v-col>
-          <v-col>
+          <v-col class="text-end">
             <FormBtnPrime class="t-white" @click.stop="setModalState(true)">
               افزودن مقاله جدید
             </FormBtnPrime>
