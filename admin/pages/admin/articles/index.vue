@@ -1,12 +1,14 @@
 <template>
   <v-container>
-    <v-card elevation="0">
-      <FormBtnPrime class="t-white" @click.stop="setModalState(true)"
-        >افزودن مقاله جدید
+    <v-card elevation="0" class="bg-transparent">
+      <FormBtnPrime class="t-white" @click.stop="setModalState(true)">
+        افزودن مقاله جدید
       </FormBtnPrime>
       <section>
         <div v-for="article in articles" :key="article.id">
-          <AdminArticle :item="article"/>
+          <v-col cols="12">
+            <AdminArticle :item="article" />
+          </v-col>
         </div>
       </section>
     </v-card>
