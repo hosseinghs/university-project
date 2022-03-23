@@ -13,6 +13,10 @@ router.post("/", async (req, res) => {
     `SELECT * FROM admin where phoneNumber=${phoneNumber}`
   );
   const admin = sqlRes.recordsets[0][0];
+  if (admin.password !== password)
+    return res
+      .status(400)
+      .send({ success: false, des: "رمزعبور و یا شماره تلفن اشتباه است!" });
   const token = createToken(admin);
   return res.status(200).send({
     success: true,
