@@ -30,4 +30,5 @@ router.get("/get", checkToken, async (req, res) => {
   const articlesList = sqlRes.recordsets[0];
   res.status(200).send({ success: true, res: articlesList });
 });
+
 module.exports = router;
