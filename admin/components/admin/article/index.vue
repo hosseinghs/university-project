@@ -30,7 +30,9 @@
         </v-btn>
       </UiTooltip>
     </v-card-actions>
-    <UiWarning />
+    <UiWarning
+      @submitActionClicked="changeArticlePublishmentState(selectedArticle.id)"
+    />
   </v-card>
 </template>
 
@@ -39,6 +41,7 @@ import { mapActions } from 'vuex'
 import { faDate } from '~/utils/general'
 export default {
   name: 'ArticleCardComponent',
+
   props: {
     item: {
       type: Object,
@@ -46,22 +49,37 @@ export default {
       required: true,
     },
   },
+
+  data() {
+    return {
+      selectedArticle: null,
+    }
+  },
+
   computed: {
     isPublished() {
       return this.item.isPublished
     },
   },
+
+  beforeDestroy() {
+    this.selectedArticle = null
+  },
+
   methods: {
     faDate,
     ...mapActions('warningGenerator', ['generateWarning']),
-    generateWarningConfig({ isPublished, title }) {
-      const _title = isPublished
+    ...mapActions('article', ['changeArticlePublishmentState']),
+
+    generateWarningConfig(article) {
+      this.selectedArticle = article.isPublished
+      const _title = article.isPublished
         ? 'خارج کردن پست از حالت انتشار'
         : 'منتشر کردن پست'
-      const color = isPublished ? 'red' : 'primary'
+      const color = article.isPublished ? 'red' : 'primary'
       const config = {
         color,
-        title: _title + ' ' + title,
+        title: _title + ' ' + article.title,
         text: 'آیا عملیات مورد تایید است؟',
       }
       this.generateWarning(config)
