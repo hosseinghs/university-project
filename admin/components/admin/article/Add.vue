@@ -2,7 +2,7 @@
   <v-container>
     <v-card elevation="0" class="px-15">
       <v-row align="center">
-        <v-col cols="5">
+        <v-col>
           <v-form ref="addArticleForm" @submit.prevent="submitForm()">
             <FormText
               :rules="[mustFillRule]"
@@ -36,14 +36,6 @@
               افزودن
             </FormBtnPrime>
           </v-form>
-        </v-col>
-        <v-col cols="4">
-          <v-img
-            class="mx-auto"
-            white="300"
-            contain
-            :src="require('~/assets/img/article.svg')"
-          />
         </v-col>
       </v-row>
     </v-card>
