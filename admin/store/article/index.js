@@ -12,6 +12,20 @@ export default {
     categories: [],
     articles: [],
     article: new Article(),
+    articleTypes: [
+      {
+        id: 0,
+        text: 'منتشرنشده',
+      },
+      {
+        id: 1,
+        text: 'منتشرشده',
+      },
+      {
+        id: 2,
+        text: 'همه',
+      },
+    ],
   }),
   mutations: {
     SET_CATEGORIES(state, categories) {
@@ -53,9 +67,9 @@ export default {
       return await this.$apiCaller(apiCall)()
     },
 
-    async getArticles({ commit }) {
+    async getArticles({ commit }, type = 2) {
       async function apiCall(api) {
-        const { success, res } = await getArticlesApi(api)
+        const { success, res } = await getArticlesApi(api, type)
         if (success) commit('SET_ARTICLES', res)
         return success
       }
