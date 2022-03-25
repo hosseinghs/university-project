@@ -41,7 +41,7 @@ import {
 
 export default {
   name: 'LoginPage',
-  layout: 'login',
+  layout: 'register',
   data() {
     return {
       icons: {

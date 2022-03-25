@@ -66,7 +66,7 @@ import {
 
 export default {
   name: 'LoginPage',
-  layout: 'login',
+  layout: 'register',
   data() {
     return {
       icons: {
@@ -85,10 +85,10 @@ export default {
     mobileLengthRule,
     PhoneNumberRule,
     emailFormatRule,
-    ...mapActions('register', ['loginUser', 'setUserRegisterData']),
+    ...mapActions('register', ['signupUser', 'setUserRegisterData']),
     async submitForm() {
       if (this.$refs.login.validate()) {
-        const res = await this.loginUser();
+        const res = await this.signupUser();
         // if (res) this.$router.push({ path: '/admin/articles' })
       }
     },
