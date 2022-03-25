@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-card class="px-4 py-4 mx-auto">
+    <v-card class="px-4 py-4 mx-auto" max-width="700">
       <v-form ref="login" @submit.prevent="submitForm()">
         <h2>خوش آمدید!</h2>
         <h5>ثبت نام کنید!</h5>
