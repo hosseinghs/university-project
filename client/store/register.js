@@ -30,7 +30,7 @@ export default {
     },
 
     setUserRegisterData({ commit }, { k, v }) {
-      commit('SET_USER_LOGIN_DATA', { k, v });
+      commit('SET_USER_REGISTER_DATA', { k, v });
     },
 
     setLoggedInState({ commit }, bool) {
