@@ -30,9 +30,7 @@
         </v-btn>
       </UiTooltip>
     </v-card-actions>
-    <UiWarning
-      @submitActionClicked="changeArticlePublishmentState(selectedArticle.id)"
-    />
+    <!-- <UiWarning @submitActionClicked="changeState(item.id)" /> -->
   </v-card>
 </template>
 
@@ -50,20 +48,10 @@ export default {
     },
   },
 
-  data() {
-    return {
-      selectedArticle: null,
-    }
-  },
-
   computed: {
     isPublished() {
       return this.item.isPublished
     },
-  },
-
-  beforeDestroy() {
-    this.selectedArticle = null
   },
 
   methods: {
