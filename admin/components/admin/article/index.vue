@@ -72,7 +72,7 @@ export default {
     ...mapActions('article', ['changeArticlePublishmentState']),
 
     generateWarningConfig(article) {
-      this.selectedArticle = article.isPublished
+      this.selectedArticle = article
       const _title = article.isPublished
         ? 'خارج کردن پست از حالت انتشار'
         : 'منتشر کردن پست'
