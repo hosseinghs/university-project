@@ -81,11 +81,13 @@ export default function ({ $axios, store, env, redirect }, inject) {
   });
 
   const api = $axios.create({ baseURL: env.baseUrl, withCredentials: false });
+
   // api.onRequest((req) => {
   //   const token = window.localStorage.getItem('token');
   //   const bearer = `bearer ${JSON.parse(token)}`;
   //   req.headers.authorization = bearer;
   // });
+  
   api.onResponseError(async (err) => {
     let msg;
     if (err.response) {
