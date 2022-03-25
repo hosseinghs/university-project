@@ -19,6 +19,7 @@ export class User {
       email: null,
       birthDate: null,
       JoinedAt: new Date(),
+      password: null,
     };
     createObjWithDefaultValues(this, defaults, options);
   }
