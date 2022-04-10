@@ -9,11 +9,12 @@ module.exports = function checkToken(req, res, next) {
   try {
     const code = token.split("bearer ")[1];
     if (code) {
-      jwt.verify(code, "secret", (err) => {
+      jwt.verify(code, "secret", (err, user) => {
         if (err)
           return res
             .status(403)
             .send({ success: false, des: "مجددا وارد شوید" });
+        req.body.userId = user.id;
       });
       next();
     }
