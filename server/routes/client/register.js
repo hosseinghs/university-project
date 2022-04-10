@@ -50,6 +50,7 @@ router.post("/login", async (req, res) => {
     token,
     des: `${user.firstName} خوش آمدی!`,
     user: {
+      id: user.id,
       fullName: user.firstName + " " + user.lastName,
       phoneNumber,
       jonedAt: user.jonedAt,
