@@ -19,9 +19,7 @@ export default {
     SET_LOGGEDIN_STATE(state, bool) {
       state.isLoggedIn = bool;
     },
-    SET_ADMIN_INFO(state, user) {
-      state.user = Object.assign({}, user);
-    },
+    SET_ADMIN_INFO(_, user) {},
   },
 
   actions: {
@@ -38,7 +36,7 @@ export default {
     },
 
     setUserInfo({ commit }, user) {
-      commit('setUserInfo', user);
+      commit('SET_ADMIN_INFO', user);
     },
 
     /* -------------------------------------------------------------------------- */
@@ -46,12 +44,13 @@ export default {
     /* -------------------------------------------------------------------------- */
 
     async loginUser({ state, dispatch }) {
-      const user = state.loginUserData;
+      const _user = state.loginUserData;
       async function apiCall(api) {
-        const { success, res } = await loginApi(api, user);
+        const { success, token, user } = await loginApi(api, _user);
+        console.log(token);
         if (success) {
-          window.localStorage.setItem('token', res.token);
-          dispatch('setUserInfo', res.user);
+          window.localStorage.setItem('token', token);
+          window.localStorage.setItem('user', JSON.stringify(user));
           dispatch('setLoggedInState', true);
         }
         return success;
@@ -59,16 +58,10 @@ export default {
       return await this.$apiCaller(apiCall)();
     },
 
-    
-    async signupUser({ state, dispatch }) {
+    async signupUser({ state }) {
       const user = state.user;
       async function apiCall(api) {
-        const { success, res } = await signUpUserApi(api, user);
-        if (success) {
-          window.localStorage.setItem('token', res.token);
-          dispatch('setUserInfo', res.user);
-          dispatch('setLoggedInState', true);
-        }
+        const { success } = await signUpUserApi(api, user);
         return success;
       }
       return await this.$apiCaller(apiCall)();
