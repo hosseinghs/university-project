@@ -63,7 +63,7 @@ export default {
     async submitForm() {
       if (this.$refs.login.validate()) {
         const res = await this.loginUser()
-        // if (res) this.$router.push({ path: '/admin/articles' })
+        if (res) this.$router.push({ path: '/articles' })
       }
     },
   },
