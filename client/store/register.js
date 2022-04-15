@@ -48,7 +48,7 @@ export default {
       async function apiCall(api) {
         const { success, token, user } = await loginApi(api, _user);
         if (success) {
-          window.localStorage.setItem('token', token);
+          window.localStorage.setItem('authorization', token);
           window.localStorage.setItem('user', JSON.stringify(user));
           dispatch('setLoggedInState', true);
         }

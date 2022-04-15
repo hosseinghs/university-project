@@ -84,7 +84,7 @@ export default function ({ $axios, store, env, redirect }, inject) {
   /* -------------------------- add token to the api -------------------------- */
 
   api.onRequest((req) => {
-    const token = window.localStorage.getItem('token');
+    const token = window.localStorage.getItem('authorization');
     if (token) {
       const bearer = `bearer ${token}`;
       req.headers.authorization = bearer;
