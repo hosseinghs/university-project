@@ -9,9 +9,8 @@ router.get("/category", checkToken, async (_, res) => {
   res.status(200).send({ success: true, res: categoryList });
 });
 
-
 router.get("/get", checkToken, async (req, res) => {
-  const { type } = req.query;
+  const { type } = req.query || 2;
   const allArticlesType = 2;
   const findAllArticles = "SELECT * FROM article";
   const findPublishedOrUnPublishedArticles = `SELECT * FROM article WHERE isPublished = ${type}`;
