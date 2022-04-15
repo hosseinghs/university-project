@@ -37,7 +37,6 @@ router.post("/login", async (req, res) => {
     return res
       .status(400)
       .send({ success: false, des: "کاربری با این مشخصات یافت نشد!" });
-  console.log(user);
 
   if (user.password !== password)
     return res
@@ -45,6 +44,7 @@ router.post("/login", async (req, res) => {
       .send({ success: false, des: "رمزعبور یا شماره تلفن اشتباه است!" });
 
   const token = createToken(user);
+  req.session.isLoggedIn = true;
   return res.status(200).send({
     success: true,
     token,
