@@ -5,20 +5,31 @@
     app
   >
     <hr class="__red__divider" />
-    <v-row>
+    <v-row align="center">
       <v-col cols="2">
         <nuxt-link to="/">
           <v-img contain width="223" :src="require('~/assets/logo.jpg')" />
         </nuxt-link>
+      </v-col>
+      <v-col cols="8">
+        <v-btn-toggle >
+          <v-btn v-for="{ name, id } in categories" :key="id" value="left">
+            <span class="hidden-sm-and-down">{{ name }}</span>
+          </v-btn>
+        </v-btn-toggle>
       </v-col>
     </v-row>
   </v-app-bar>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
+  computed: {
+    ...mapState('client/articles', ['categories']),
+  },
+
   created() {
     this.getCategories();
   },
