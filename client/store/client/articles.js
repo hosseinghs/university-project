@@ -17,9 +17,9 @@ export default {
   },
 
   actions: {
-    async getArticles({ commit }) {
+    async getArticles({ commit }, type = 2) {
       async function apiCall(api) {
-        const { success, res } = await getArticlesApi(api);
+        const { success, res } = await getArticlesApi(api, type);
         if (success) commit('SET_ARTICLES', res);
         return success;
       }
