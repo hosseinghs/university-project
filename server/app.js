@@ -9,6 +9,9 @@ app.use(express.json());
 const clientRegisterRoutes = require("./routes/client/register");
 app.use("/client/register", clientRegisterRoutes);
 
+const clientArticlesRoutes = require("./routes/client/articles");
+app.use("/client/articles", clientArticlesRoutes);
+
 const adminArticlesRoutes = require("./routes/admin/articles");
 app.use("/admin/articles", adminArticlesRoutes);
 
