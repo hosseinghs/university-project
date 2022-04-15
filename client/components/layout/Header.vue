@@ -6,7 +6,7 @@
   >
     <hr class="__red__divider" />
     <v-row>
-      <v-col>
+      <v-col cols="2">
         <nuxt-link to="/">
           <v-img contain width="223" :src="require('~/assets/logo.jpg')" />
         </nuxt-link>
@@ -16,7 +16,17 @@
 </template>
 
 <script>
-export default {};
+import { mapActions } from 'vuex';
+
+export default {
+  created() {
+    this.getCategories();
+  },
+
+  methods: {
+    ...mapActions('client/articles', ['getCategories']),
+  },
+};
 </script>
 
 <style scoped>

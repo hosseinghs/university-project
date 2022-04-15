@@ -7,15 +7,11 @@ import { mapActions } from 'vuex';
 
 export default {
   created() {
-    this.fireApies();
+    this.getArticles();
   },
 
   methods: {
     ...mapActions('client/articles', ['getArticles', 'getCategories']),
-    fireApies() {
-      const promises = [this.getCategories(), this.getArticles()];
-      Promise.all(promises);
-    },
   },
 };
 </script>
