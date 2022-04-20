@@ -12,8 +12,8 @@
         </nuxt-link>
       </v-col>
       <v-col cols="8">
-        <v-btn-toggle >
-          <v-btn v-for="{ name, id } in categories" :key="id" value="left">
+        <v-btn-toggle @change="getCategoryArticles($event)">
+          <v-btn v-for="{ name, id } in categories" :key="id" :value="name">
             <span class="hidden-sm-and-down">{{ name }}</span>
           </v-btn>
         </v-btn-toggle>
@@ -36,6 +36,10 @@ export default {
 
   methods: {
     ...mapActions('client/articles', ['getCategories']),
+    getCategoryArticles(categoryName) {
+      if (!categoryName) return;
+      this.$router.push({ name: 'articles-category' });
+    },
   },
 };
 </script>
