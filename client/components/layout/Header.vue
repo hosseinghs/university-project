@@ -38,7 +38,7 @@ export default {
     ...mapActions('client/articles', ['getCategories']),
     getCategoryArticles(categoryName) {
       if (!categoryName) return;
-      this.$router.push({ name: 'articles-category' });
+      this.$router.push({ name: 'articles-category-slug', slug: categoryName });
     },
   },
 };
