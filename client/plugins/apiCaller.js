@@ -95,6 +95,10 @@ export default function ({ $axios, store, env, redirect }, inject) {
 
   api.onResponseError((err) => {
     if (err.response) {
+      if (err && err.status === '401') {
+        localStorage.removeItem('authorization');
+        localStorage.removeItem('user');
+      }
       const payload = {
         config: {
           color: 'error',
