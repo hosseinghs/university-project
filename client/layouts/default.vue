@@ -13,6 +13,12 @@
 import { mapGetters, mapActions } from 'vuex';
 import lazyCaller from '../mixins/lazyCaller';
 export default {
+  middleware({ store, redirect }) {
+    const token = localStorage.getItem('authorization');
+    if (!token) redirect('/login');
+    store.dispatch('register/setLoggedInState', !!token);
+  
+  },
   mixins: [lazyCaller],
   computed: {
     // ...mapGetters('', ['']),
