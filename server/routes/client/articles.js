@@ -28,4 +28,10 @@ router.get("/changePublishmentState", (req, res) => {
   return res.status(200).send(success);
 });
 
+router.get("/singleArticle", checkToken, async (req, res) => {
+  const { id } = req.query;
+  const sqlRes = await sql.query`SELECT * FROM article WHERE id = ${id}`;
+  return res.status(200).send({ success: true, res: sqlRes.recordsets[0] });
+});
+
 module.exports = router;
