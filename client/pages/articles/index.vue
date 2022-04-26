@@ -9,7 +9,7 @@
         md="3"
         lg="4"
       >
-        <ArticleCard :text="text" :author="author" :title="title" />
+        <ArticleCard :id="id" :text="text" :author="author" :title="title" />
       </v-col>
     </v-row>
   </v-container>
