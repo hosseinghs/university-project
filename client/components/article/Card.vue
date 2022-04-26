@@ -1,10 +1,12 @@
 <template>
-  <v-card id="article_card">
+  <v-card :id="`article_card-${id}`">
     <v-card-title class="title">{{ title }}</v-card-title>
     <v-card-title class="author py-0">{{ author }}</v-card-title>
     <v-card-text v-html="text" class="text_summary pb-0"></v-card-text>
     <v-card-actions>
-      <v-btn class="read_more" small rouned>مطالعه مطلب...</v-btn>
+      <v-btn @click.stop="goToArticlePage(id)" class="read_more" small rouned>
+        مطالعه مطلب...
+      </v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -13,6 +15,10 @@
 export default {
   name: 'ArticleCardComponent',
   props: {
+    id: {
+      type: [String, Number],
+      default: '',
+    },
     title: {
       type: String,
       default: 'title',
@@ -24,6 +30,11 @@ export default {
     author: {
       type: String,
       default: 'author',
+    },
+  },
+  methods: {
+    goToArticlePage(articleId) {
+      this.$router.push({ name: 'articles-id', params: { id: articleId } });
     },
   },
 };
@@ -40,7 +51,7 @@ export default {
 }
 
 #article_card:hover .title {
-  color: #FF3A3A;
+  color: #ff3a3a;
 }
 
 #article_card .author {
