@@ -3,7 +3,7 @@
     <LayoutLoading />
     <LayoutNotif />
     <LayoutHeader />
-    <v-main>
+    <v-main style="margin-top: 50px">
       <nuxt />
     </v-main>
   </v-app>
@@ -17,7 +17,6 @@ export default {
     const token = localStorage.getItem('authorization');
     if (!token) redirect('/login');
     store.dispatch('register/setLoggedInState', !!token);
-  
   },
   mixins: [lazyCaller],
   computed: {
