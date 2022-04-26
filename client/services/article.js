@@ -9,5 +9,5 @@ export function getCategoryApi(api) {
 }
 
 export function getArticleByIdApi(api, articleId) {
-  return api.$get(baseUrl);
+  return api.$get(baseUrl + '/singleArticle' + `?id=${articleId}`);
 }
