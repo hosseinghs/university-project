@@ -7,3 +7,7 @@ export function getArticlesApi(api, type) {
 export function getCategoryApi(api) {
   return api.$get(baseUrl + '/category');
 }
+
+export function getArticleByIdApi(api, articleId) {
+  return api.$get(baseUrl);
+}
