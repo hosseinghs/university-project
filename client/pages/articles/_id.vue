@@ -12,7 +12,7 @@ export default {
   },
 
   created() {
-      const articleId = this.$route.params.articleId
+      const articleId = this.$route.params.id
       articleId && this.getArticleById(articleId)
   },
   
