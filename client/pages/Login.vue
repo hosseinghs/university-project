@@ -25,9 +25,7 @@
               />
             </v-col>
           </v-row>
-          <v-btn block type="submit" color="#9e2558" class="t-white mt-5">
-            ورود
-          </v-btn>
+          <FormBtnPrime block class="mt-5" type="submit"> ورود </FormBtnPrime>
         </v-form>
       </v-card>
     </v-col>

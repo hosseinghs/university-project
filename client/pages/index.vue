@@ -35,9 +35,9 @@
             @click:append="showPassword = !showPassword"
             @change="setUserRegisterData({ k: 'password', v: $event })"
           />
-          <v-btn block type="submit" color="#9e2558" class="t-white mt-5">
+          <FormBtnPrime block type="submit" class="mt-5">
             ثبت نام
-          </v-btn>
+          </FormBtnPrime>
         </v-form>
         <nuxt-link to="/login">ثبت نام کرده اید؟وارد شوید!</nuxt-link>
       </v-card>
