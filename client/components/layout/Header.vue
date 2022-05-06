@@ -19,6 +19,9 @@
         </v-btn-toggle>
       </v-col>
       <v-col>
+        <span>
+          {{ userName }}
+        </span>
         <v-btn @click.stop="logout()" color="#9e2558" outlined>خروج</v-btn>
       </v-col>
     </v-row>
@@ -31,6 +34,10 @@ import { mapState, mapActions } from 'vuex';
 export default {
   computed: {
     ...mapState('client/articles', ['categories']),
+    userName() {
+      const user = JSON.parse(window.localStorage.getItem('user'));
+      return user.fullName;
+    },
   },
 
   created() {
