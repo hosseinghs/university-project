@@ -77,9 +77,4 @@ export default {
   text-transform: none;
   color: #888888;
 }
-
-#article_card .read_more {
-  background-color: #40617a;
-  color: #fff !important;
-}
 </style>
