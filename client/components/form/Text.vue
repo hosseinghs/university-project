@@ -2,7 +2,7 @@
   <v-text-field
     v-bind="$attrs"
     outlined
-    color="info"
+    color="#9e2558"
     hide-details="auto"
     v-on="$listeners"
     :auto-complete="false"
