@@ -18,6 +18,9 @@
           </v-btn>
         </v-btn-toggle>
       </v-col>
+      <v-col>
+        <v-btn @click.stop="logout()" color="#9e2558" outlined>خروج</v-btn>
+      </v-col>
     </v-row>
   </v-app-bar>
 </template>
@@ -42,6 +45,11 @@ export default {
         name: 'articles-category-slug',
         params: { slug: categoryName },
       });
+    },
+    logout() {
+      window.localStorage.removeItem('authorization');
+      window.localStorage.removeItem('user');
+      this.$router.push({ path: '/login' });
     },
   },
 };
