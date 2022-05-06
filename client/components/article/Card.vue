@@ -4,7 +4,13 @@
     <v-card-title class="author py-0">{{ author }}</v-card-title>
     <v-card-text v-html="text" class="text_summary pb-0"></v-card-text>
     <v-card-actions>
-      <v-btn @click.stop="goToArticlePage(id)" class="read_more" small rouned>
+      <v-btn
+        @click.stop="goToArticlePage(id)"
+        small
+        outlined
+        rouned
+        color="#9e2558"
+      >
         مطالعه مطلب...
       </v-btn>
     </v-card-actions>
