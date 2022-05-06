@@ -7,7 +7,7 @@
       fixed
       bottom
       left
-      color="teal"
+      color="#9e2558"
       @click="toTop"
     >
       <v-icon color="white">{{ icons.arrow }}</v-icon>
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { mdiChevronUp } from "@mdi/js";
+import { mdiChevronUp } from '@mdi/js';
 
 export default {
   data() {
@@ -27,7 +27,6 @@ export default {
       fab: false,
     };
   },
-  /* ------------------------------------------------------------------------ */
   methods: {
     onScroll(e) {
       const top = e.srcElement.scrollingElement.scrollTop;
