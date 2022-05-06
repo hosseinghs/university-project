@@ -6,51 +6,40 @@
           <h2>خوش آمدید!</h2>
           <h5>ثبت نام کنید!</h5>
           <v-divider class="mt-2 mb-5"></v-divider>
-          <v-row>
-            <v-col cols="12">
-              <FormText
-                label="نام"
-                :rules="[mustFillRule]"
-                @change="setUserRegisterData({ k: 'firstName', v: $event })"
-              />
-            </v-col>
-            <v-col cols="12">
-              <FormText
-                label="نام خانوادگی"
-                :rules="[mustFillRule]"
-                @change="setUserRegisterData({ k: 'lastName', v: $event })"
-              />
-            </v-col>
-            <v-col cols="12">
-              <FormText
-                label="ایمیل"
-                :rules="[mustFillRule, emailFormatRule]"
-                @change="setUserRegisterData({ k: 'email', v: $event })"
-              />
-            </v-col>
-            <v-col cols="12">
-              <FormText
-                label="شماره تلفن"
-                :rules="[mustFillRule, mobileLengthRule, PhoneNumberRule]"
-                @change="setUserRegisterData({ k: 'phoneNumber', v: $event })"
-              />
-            </v-col>
-            <v-col cols="12">
-              <FormText label="تاریخ تولد" />
-            </v-col>
-            <v-col cols="12">
-              <FormText
-                label="رمزعبور"
-                :rules="[mustFillRule]"
-                :type="showPassword ? 'text' : 'password'"
-                :append-icon="showPassword ? icons.hide : icons.show"
-                @click:append="showPassword = !showPassword"
-                @change="setUserRegisterData({ k: 'password', v: $event })"
-              />
-            </v-col>
-          </v-row>
-          <v-btn block type="submit" class="primary mt-5">ورود</v-btn>
+          <FormText
+            label="نام"
+            :rules="[mustFillRule]"
+            @change="setUserRegisterData({ k: 'firstName', v: $event })"
+          />
+          <FormText
+            label="نام خانوادگی"
+            :rules="[mustFillRule]"
+            @change="setUserRegisterData({ k: 'lastName', v: $event })"
+          />
+          <FormText
+            label="ایمیل"
+            :rules="[mustFillRule, emailFormatRule]"
+            @change="setUserRegisterData({ k: 'email', v: $event })"
+          />
+          <FormText
+            label="شماره تلفن"
+            :rules="[mustFillRule, mobileLengthRule, PhoneNumberRule]"
+            @change="setUserRegisterData({ k: 'phoneNumber', v: $event })"
+          />
+          <FormText label="تاریخ تولد" />
+          <FormText
+            label="رمزعبور"
+            :rules="[mustFillRule]"
+            :type="showPassword ? 'text' : 'password'"
+            :append-icon="showPassword ? icons.hide : icons.show"
+            @click:append="showPassword = !showPassword"
+            @change="setUserRegisterData({ k: 'password', v: $event })"
+          />
+          <v-btn block type="submit" color="#9e2558" class="t-white mt-5">
+            ثبت نام
+          </v-btn>
         </v-form>
+        <nuxt-link to="/login">ثبت نام کرده اید؟وارد شوید!</nuxt-link>
       </v-card>
     </v-col>
   </v-row>
