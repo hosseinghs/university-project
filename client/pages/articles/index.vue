@@ -24,11 +24,16 @@ export default {
   },
 
   created() {
-    this.getArticles();
+    const promises = [this.getArticles(), this.getLatestArticles()];
+    Promise.all(promises);
   },
 
   methods: {
-    ...mapActions('client/articles', ['getArticles', 'getCategories']),
+    ...mapActions('client/articles', [
+      'getArticles',
+      'getCategories',
+      'getLatestArticles',
+    ]),
   },
 };
 </script>
