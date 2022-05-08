@@ -34,4 +34,14 @@ router.get("/singleArticle", checkToken, async (req, res) => {
   return res.status(200).send({ success: true, res: sqlRes.recordsets[0][0] });
 });
 
+router.get("/latestArticles", checkToken, async (_, res) => {
+  // returns last 5 articles
+  const sqlRes = await sql.query`SELECT *
+    FROM article
+    WHERE  id <= IDENT_CURRENT('article')
+    AND id >= IDENT_CURRENT('article') - 5
+    `;
+  return res.status(200).send({ res: sqlRes, success: true });
+});
+
 module.exports = router;
