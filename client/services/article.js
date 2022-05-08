@@ -11,3 +11,7 @@ export function getCategoryApi(api) {
 export function getArticleByIdApi(api, articleId) {
   return api.$get(baseUrl + '/singleArticle' + `?id=${articleId}`);
 }
+
+export function getLatestArticlesApi(api){
+  return api.$get(baseUrl + '/latestArticles')
+}
