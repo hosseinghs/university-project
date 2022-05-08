@@ -11,11 +11,15 @@ router.get("/category", checkToken, async (_, res) => {
 
 router.post("/create", checkToken, async (req, res) => {
   const { title, categoryId, createdDate, author, text } = req.body;
-  await sql.query`INSERT INTO article ( title , categoryId , author , date , text ) VALUES (${title},${categoryId},${author},${createdDate},${text})`,
-    (err, res) => {
+  sql.query(
+    `INSERT INTO article ( title , categoryId , author , date , text ) VALUES (${title},${categoryId},${author},${createdDate},${text})`,
+    (err) => {
       if (err) res.status(400).send({ success: false, des: err });
-      return res.send({ success: true, des: "با موفقیت افزوده شد!" });
-    };
+      return res
+        .status(200)
+        .send({ success: true, des: "با موفقیت افزوده شد!" });
+    }
+  );
 });
 
 router.get("/get", checkToken, async (req, res) => {
