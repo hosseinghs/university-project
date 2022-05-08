@@ -3,6 +3,7 @@ import {
   getCategoryApi,
   getArticlesApi,
   getArticleByIdApi,
+  getLatestArticlesApi,
 } from '~/services/article';
 import { Article } from '~/models/article';
 
@@ -12,6 +13,7 @@ export default {
   state: () => ({
     categories: [],
     articles: [],
+    latestArticles: [],
     article: new Article(),
   }),
 
@@ -21,11 +23,19 @@ export default {
       list.splice(0);
       addToArr(list, categories);
     },
+
     SET_ARTICLES(state, arr) {
       const list = state.articles;
       list.splice(0);
       addToArr(list, arr);
     },
+
+    SET_LATEST_ARTICLES(state, arr) {
+      const list = state.latestArticles;
+      list.splice(0);
+      addToArr(list, arr);
+    },
+
     SET_ARTICLE(state, article) {
       state.article = Object.assign({}, article);
     },
@@ -54,6 +64,15 @@ export default {
       async function apiCall(api) {
         const { success, res } = await getArticleByIdApi(api, articleId);
         if (success) commit('SET_ARTICLE', res);
+        return success;
+      }
+      return await this.$apiCaller(apiCall)();
+    },
+
+    async getLatestArticles({ commit }, articleId) {
+      async function apiCall(api) {
+        const { success, res } = await getLatestArticlesApi(api, articleId);
+        if (success) commit('SET_LATEST_ARTICLES', res);
         return success;
       }
       return await this.$apiCaller(apiCall)();
