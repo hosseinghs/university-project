@@ -29,13 +29,11 @@
               />
             </v-col>
             <v-col>
-              <FormCkEditor
-                fill-err
-                label="متن مقاله"
-                @input="
+              <FormEditor
+                @onEditorChange="
                   setNewArticleData({
                     k: 'text',
-                    v: $event,
+                    v: $event.html,
                   })
                 "
               />
