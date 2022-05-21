@@ -12,7 +12,8 @@ router.get("/category", checkToken, async (_, res) => {
 router.post("/create", checkToken, async (req, res) => {
   const { title, categoryId, createdDate, author, text } = req.body;
   sql.query(
-    `INSERT INTO article ( title , categoryId , author , date , text ) VALUES (${title},${categoryId},${author},${createdDate},${text})`,
+    `INSERT INTO article (title, categoryId, author, date, text, isPublished, img)
+         VALUES ('${title}', '${categoryId}', '${author}', '${createdDate}', '${text}', '${true}' , '${null}');`,
     (err) => {
       if (err) res.status(400).send({ success: false, des: err });
       return res
