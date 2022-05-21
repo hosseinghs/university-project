@@ -8,7 +8,6 @@
               v-model="articleType"
               label="نوع"
               item-value="id"
-              clearable
               :items="articleTypes"
             />
           </v-col>
@@ -40,7 +39,7 @@ export default {
 
   data() {
     return {
-      articleType: null,
+      articleType: 2,
     }
   },
 
