@@ -37,4 +37,8 @@ export default {
 #quillEditor .ql-container {
   background-color: #fff !important;
 }
+
+#quillEditor .ql-container .ql-snow {
+  min-height: 150px;
+}
 </style>
