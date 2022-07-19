@@ -1,44 +1,98 @@
 <template>
-  <div id="quillEditor">
-    <quillEditor
-      v-model="content"
-      class="quill-editor"
-      @change="$emit('onEditorChange', $event)"
-    ></quillEditor>
-  </div>
+  <ckeditor
+    :id="id"
+    v-bind="$attrs"
+    :editor="classicEditor"
+    :config="editorConfig"
+    v-on="$listeners"
+  />
 </template>
 
 <script>
-import 'quill/dist/quill.core.css'
-import 'quill/dist/quill.snow.css'
-import 'quill/dist/quill.bubble.css'
-
-import { quillEditor } from 'vue-quill-editor'
-
+let ClassicEditor
+let CKEditor
+if (process.client) {
+  ClassicEditor = require('@/plugins/ckeditor/ckeditor')
+  CKEditor = require('@ckeditor/ckeditor5-vue2')
+} else {
+  CKEditor = { component: { template: '<div></div>' } }
+}
 export default {
-  name: 'EditorComponent',
+  name: 'CKEditorComponent',
   components: {
-    quillEditor,
+    ckeditor: CKEditor.component,
+  },
+  props: {
+    id: {
+      type: String,
+      default: 'editor',
+    },
   },
   data() {
     return {
-      content: '',
+      classicEditor: ClassicEditor,
+      editorConfig: {
+        removePlugins: ['Title'],
+        language: 'fa',
+        contentsLangDirection: 'rtl',
+        placeholder: 'محتوای خود را وارد کنید',
+      },
+      editorElement: null,
     }
+  },
+  methods: {
+    insertTextAtTheEnd(text) {
+      function findCorrectPosition(htmlStr) {
+        const lastIndexOfHTMLTag = htmlStr.lastIndexOf('</')
+        const lastUlTag = htmlStr.lastIndexOf('</ul>')
+        const lastOlTag = htmlStr.lastIndexOf('</ol>')
+        if (
+          lastUlTag === lastIndexOfHTMLTag ||
+          lastOlTag === lastIndexOfHTMLTag
+        ) {
+          const lastLiTag = htmlStr.lastIndexOf('</li>')
+          return lastLiTag
+        }
+        return lastIndexOfHTMLTag
+      }
+      const currentString = this.value
+      const correctIndex = findCorrectPosition(currentString)
+      const firstHalf = currentString.substring(0, correctIndex)
+      const secondHalf = currentString.substring(correctIndex)
+      const newString = `${firstHalf}${text}${secondHalf}`
+      this.$emit('input', newString)
+    },
   },
 }
 </script>
 
-<style>
-#quillEditor .ql-editor {
-  text-align: right !important;
-  direction: rtl !important;
+<style lang="scss">
+.ck-editor {
+  width: 100% !important;
 }
-
-#quillEditor .ql-container {
-  background-color: #fff !important;
+.ck-content {
+  padding-right: 30px !important;
+  padding-left: 30px !important;
+  min-height: var(--minHeight);
 }
-
-#quillEditor .ql-container .ql-snow {
-  min-height: 150px;
+.ck.ck-dropdown .ck-dropdown__panel.ck-dropdown__panel_nw,
+.ck.ck-dropdown .ck-dropdown__panel.ck-dropdown__panel_sw {
+  right: unset !important;
+  left: 0 !important;
+}
+.ck.ck-sticky-panel .ck-sticky-panel__content_sticky {
+  position: static !important;
+}
+.ck-editor__top::before {
+  content: var(--labelText);
+  color: #0009;
+  height: 20px;
+  line-height: 20px;
+  font-size: 16px;
+  font-family: Irsans;
+  padding-bottom: 4px;
+}
+.ck-editor__editable_inline {
+  min-height: 350px;
 }
 </style>
