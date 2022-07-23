@@ -17,5 +17,5 @@ export function getLatestArticlesApi(api) {
 }
 
 export function getArticelsWithCategoryWithCategoryNameApi(api, name) {
-  return api.$get(baseUrl + '/getArticelsWithCategory' + name);
+  return api.$get(baseUrl + '/getArticelsWithCategory?' + name);
 }
