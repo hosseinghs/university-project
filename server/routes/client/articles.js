@@ -42,7 +42,8 @@ router.get("/latestArticles", checkToken, async (_, res) => {
     WHERE  id <= IDENT_CURRENT('article')
     AND id >= IDENT_CURRENT('article') - 5
     `;
-  return res.status(200).send({ res: sqlRes, success: true });
+  console.log(sqlRes);
+  return res.status(200).send({ res: [], success: true });
 });
 
 router.get("/getArticelsWithCategory", checkToken, async (req, res) => {
@@ -52,13 +53,11 @@ router.get("/getArticelsWithCategory", checkToken, async (req, res) => {
   const sqlRes =
     await sql.query`SELECT * FROM article WHERE categoryId = ${id}`;
   const _res = sqlRes.recordset;
-  return res
-    .status(200)
-    .send({
-      res: _res,
-      success: true,
-      des: "مشکلی پیش آمده است! مجددا تلاش کنید",
-    });
+  return res.status(200).send({
+    res: _res,
+    success: true,
+    des: "مشکلی پیش آمده است! مجددا تلاش کنید",
+  });
 });
 
 module.exports = router;
