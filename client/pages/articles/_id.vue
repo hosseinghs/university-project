@@ -12,6 +12,7 @@
           <v-card-text v-html="article.text"></v-card-text>
         </v-card>
       </v-col>
+      <v-col cols="12" lg="4">asdasdasdasdasd</v-col>
     </v-row>
   </v-container>
 </template>
@@ -27,11 +28,13 @@ export default {
 
   created() {
     const articleId = this.$route.params.id;
-    articleId && this.getArticleById(articleId);
+
+    const promises = [this.getLatestArticles(), this.getArticleById(articleId)];
+    if (articleId) Promise.all(promises);
   },
 
   methods: {
-    ...mapActions('client/articles', ['getArticleById']),
+    ...mapActions('client/articles', ['getArticleById', 'getLatestArticles']),
   },
 };
 </script>
