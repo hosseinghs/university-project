@@ -1,20 +1,37 @@
 <template>
-  <v-container>
-    <v-row>
-      <v-col cols="12" lg="8">
-        <v-card class="rounded-lg" elevation="2">
-          <v-card-title class="title">{{ article.title }}</v-card-title>
-          <v-card-text>
-            <p>
-              <span class="author">{{ article.author }}</span>
-            </p>
-          </v-card-text>
-          <v-card-text v-html="article.text"></v-card-text>
-        </v-card>
-      </v-col>
-      <v-col cols="12" lg="4">asdasdasdasdasd</v-col>
-    </v-row>
-  </v-container>
+  <v-card max-width="1100" class="mx-auto" elevation="0">
+    <v-container>
+      <v-row>
+        <v-col cols="12" lg="8">
+          <v-card class="rounded-lg" elevation="2">
+            <v-card-title class="title">{{ article.title }}</v-card-title>
+            <v-card-text>
+              <p>
+                <span class="author">{{ article.author }}</span>
+              </p>
+            </v-card-text>
+            <v-card-text v-html="article.text"></v-card-text>
+          </v-card>
+        </v-col>
+        <v-col cols="12" lg="4">
+          <v-row>
+            <v-col
+              v-for="{ id, text, author, title } in articles"
+              :key="id"
+              cols="12"
+            >
+              <ArticleCard
+                :id="id"
+                :text="text"
+                :author="author"
+                :title="title"
+              />
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-card>
 </template>
 
 <script>
@@ -23,7 +40,7 @@ export default {
   name: 'SingleArticlePage',
 
   computed: {
-    ...mapState('client/articles', ['article']),
+    ...mapState('client/articles', ['article', 'articles']),
   },
 
   created() {
