@@ -1,7 +1,13 @@
 <template>
-  <v-card :id="`article_card-${id}`">
-    <v-card-title class="title">{{ title }}</v-card-title>
-    <v-card-title class="author py-0">{{ author }}</v-card-title>
+  <v-card :id="`article_card-${id}`" class="px-2 py-2">
+    <v-card-title
+      class="title font-weight-bold"
+      style="word-break: break-word"
+      >{{ title }}</v-card-title
+    >
+    <v-card-title class="author py-0" style="font-size: 16px">{{
+      author
+    }}</v-card-title>
     <v-card-text v-html="text" class="text_summary pb-0"></v-card-text>
     <v-card-actions>
       <v-btn
@@ -37,7 +43,6 @@ export default {
       type: String,
       default: 'author',
     },
-    
   },
   methods: {
     goToArticlePage(articleId) {
@@ -64,7 +69,7 @@ export default {
 #article_card .author {
   color: #9e2558;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 12px !important;
   white-space: nowrap;
   overflow: hidden;
   cursor: pointer;
