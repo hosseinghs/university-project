@@ -77,4 +77,8 @@ export default {
   text-transform: none;
   color: #888888;
 }
+
+img {
+  width: 100% !important;
+}
 </style>
