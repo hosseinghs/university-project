@@ -33,16 +33,23 @@ export function faDate(date) {
   return null;
 }
 
-export function generateQueryString(payload) {
-  let query = '';
-  if (payload && typeof payload !== 'string' && !Array.isArray(payload)) {
-    for (const [key, val] of Object.entries(payload)) {
-      query = `${query}&${key}=${
-        typeof val === 'object' || typeof val === 'string'
-          ? val.toString()
-          : Number(val)
-      }`;
-    }
+export function generateQueryStringFromAnObject(obj) {
+  if (!obj) return;
+  let q = '';
+  for (const [key, value] of Object.entries(obj)) {
+    if (value && value !== null) q += `${key}=${value}&`;
   }
-  return query;
+  return q;
+}
+
+export function divideWordsFromSentence(str = '', numOfWords = 5) {
+  return str && numOfWords
+    ? str.split(' ').splice(0, numOfWords).join('  ')
+    : '';
+}
+
+export function howMuchTimeDoesItTakeToRead(text, wpm = 265) {
+  const words = text.trim().split(/\s+/).length;
+  const time = Math.ceil(words / wpm);
+  return time;
 }
