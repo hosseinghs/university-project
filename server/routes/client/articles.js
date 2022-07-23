@@ -1,3 +1,4 @@
+const { application } = require("express");
 const express = require("express");
 const router = express.Router();
 const sql = require("mssql");
@@ -42,6 +43,15 @@ router.get("/latestArticles", checkToken, async (_, res) => {
     AND id >= IDENT_CURRENT('article') - 5
     `;
   return res.status(200).send({ res: sqlRes, success: true });
+});
+
+router.get("/getArticelsWithCategory", checkToken, async (req, res) => {
+  const id = req.query.category;
+  if (!id) return res.status(400).send({ success: false });
+  const sqlRes =
+    await sql.query`SELECT * FROM article WHERE categoryId = ${id}`;
+  const _res = sqlRes.recordset;
+  return res.status(200).send({ res: _res, success: true });
 });
 
 module.exports = router;
