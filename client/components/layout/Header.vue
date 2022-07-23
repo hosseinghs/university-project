@@ -11,14 +11,14 @@
           <v-img contain width="223" :src="require('~/assets/logo.jpg')" />
         </nuxt-link>
       </v-col>
-      <v-col cols="8">
+      <v-col cols="6">
         <v-btn-toggle @change="getCategoryArticles($event)">
           <v-btn v-for="{ name, id } in categories" :key="id" :value="id">
             <span class="hidden-sm-and-down">{{ name }}</span>
           </v-btn>
         </v-btn-toggle>
       </v-col>
-      <v-col>
+      <v-col cols="auto" class="text-end">
         <span>
           {{ userName }}
         </span>
