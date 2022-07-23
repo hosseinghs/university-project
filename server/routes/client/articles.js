@@ -36,14 +36,9 @@ router.get("/singleArticle", checkToken, async (req, res) => {
 });
 
 router.get("/latestArticles", checkToken, async (_, res) => {
-  // returns last 5 articles
-  const sqlRes = await sql.query`SELECT *
-    FROM article
-    WHERE  id <= IDENT_CURRENT('article')
-    AND id >= IDENT_CURRENT('article') - 5
-    `;
-  console.log(sqlRes);
-  return res.status(200).send({ res: [], success: true });
+  const sqlRes = await sql.query`SELECT TOP 5 * FROM article ORDER BY id DESC`;
+  const _res = sqlRes.recordset;
+  return res.status(200).send({ res: _res, success: true });
 });
 
 router.get("/getArticelsWithCategory", checkToken, async (req, res) => {
