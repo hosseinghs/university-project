@@ -5,7 +5,7 @@
         v-for="{ text, author, title, id } in articles"
         :key="id"
         cols="12"
-        sm="2"
+        sm="6"
         md="3"
         lg="4"
       >
