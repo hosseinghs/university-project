@@ -47,11 +47,18 @@ router.get("/latestArticles", checkToken, async (_, res) => {
 
 router.get("/getArticelsWithCategory", checkToken, async (req, res) => {
   const id = req.query.category;
-  if (!id) return res.status(400).send({ success: false });
+  if (!id || id === "undefined")
+    return res.status(400).send({ success: false });
   const sqlRes =
     await sql.query`SELECT * FROM article WHERE categoryId = ${id}`;
   const _res = sqlRes.recordset;
-  return res.status(200).send({ res: _res, success: true });
+  return res
+    .status(200)
+    .send({
+      res: _res,
+      success: true,
+      des: "مشکلی پیش آمده است! مجددا تلاش کنید",
+    });
 });
 
 module.exports = router;
