@@ -3,11 +3,18 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   created() {
-    console.log('article slug', this.$route.params);
+    const articleId = this.$route.params.id;
+    this.getArticelsWithCategoryWithCategoryId(articleId);
+  },
+
+  methods: {
+    ...mapActions('client/articles', [
+      'getArticelsWithCategoryWithCategoryId',
+    ]),
   },
 };
 </script>
-
-<style></style>

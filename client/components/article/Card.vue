@@ -37,6 +37,7 @@ export default {
       type: String,
       default: 'author',
     },
+    
   },
   methods: {
     goToArticlePage(articleId) {

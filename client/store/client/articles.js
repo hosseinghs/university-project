@@ -4,7 +4,7 @@ import {
   getArticlesApi,
   getArticleByIdApi,
   getLatestArticlesApi,
-  getArticelsWithCategoryWithCategoryNameApi,
+  getArticelsWithCategoryWithCategoryIdApi,
 } from '~/services/article';
 import { Article } from '~/models/article';
 
@@ -79,10 +79,10 @@ export default {
       return await this.$apiCaller(apiCall)();
     },
 
-    async getArticelsWithCategoryWithCategoryName({ commit }, articleName) {
+    async getArticelsWithCategoryWithCategoryId({ commit }, id) {
       async function apiCall(api) {
         const { success, res } =
-          await getArticelsWithCategoryWithCategoryNameApi(api, articleName);
+          await getArticelsWithCategoryWithCategoryIdApi(api, id);
         if (success) commit('SET_ARTICLES', res);
         return success;
       }

@@ -13,7 +13,7 @@
       </v-col>
       <v-col cols="8">
         <v-btn-toggle @change="getCategoryArticles($event)">
-          <v-btn v-for="{ name, id } in categories" :key="id" :value="name">
+          <v-btn v-for="{ name, id } in categories" :key="id" :value="id">
             <span class="hidden-sm-and-down">{{ name }}</span>
           </v-btn>
         </v-btn-toggle>
@@ -46,13 +46,17 @@ export default {
 
   methods: {
     ...mapActions('client/articles', ['getCategories']),
-    getCategoryArticles(categoryName) {
-      if (!categoryName) return;
+
+    getCategoryArticles(id) {
+      if (!id) return;
+      const category = this.categories.find((category) => category.id === id);
+      if (!category) return;
       this.$router.push({
         name: 'articles-category-slug',
-        params: { slug: categoryName },
+        params: { slug: category.name, id: category.id },
       });
     },
+
     logout() {
       window.localStorage.removeItem('authorization');
       window.localStorage.removeItem('user');
