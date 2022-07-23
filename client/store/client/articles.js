@@ -14,7 +14,6 @@ export default {
   state: () => ({
     categories: [],
     articles: [],
-    latestArticles: [],
     article: new Article(),
   }),
 
@@ -27,12 +26,6 @@ export default {
 
     SET_ARTICLES(state, arr) {
       const list = state.articles;
-      list.splice(0);
-      addToArr(list, arr);
-    },
-
-    SET_LATEST_ARTICLES(state, arr) {
-      const list = state.latestArticles;
       list.splice(0);
       addToArr(list, arr);
     },
@@ -73,7 +66,7 @@ export default {
     async getLatestArticles({ commit }, articleId) {
       async function apiCall(api) {
         const { success, res } = await getLatestArticlesApi(api, articleId);
-        if (success) commit('SET_LATEST_ARTICLES', res);
+        if (success) commit('SET_ARTICLES', res);
         return success;
       }
       return await this.$apiCaller(apiCall)();
@@ -81,8 +74,10 @@ export default {
 
     async getArticelsWithCategoryWithCategoryId({ commit }, id) {
       async function apiCall(api) {
-        const { success, res } =
-          await getArticelsWithCategoryWithCategoryIdApi(api, id);
+        const { success, res } = await getArticelsWithCategoryWithCategoryIdApi(
+          api,
+          id
+        );
         if (success) commit('SET_ARTICLES', res);
         return success;
       }
