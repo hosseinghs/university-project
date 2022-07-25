@@ -6,7 +6,7 @@ import {
   getLatestArticlesApi,
   getArticelsWithCategoryWithCategoryIdApi,
 } from '~/services/article';
-import { Article } from '~/models/article';
+import { Article, Queries } from '~/models/article';
 
 export default {
   namespaced: true,
@@ -15,6 +15,7 @@ export default {
     categories: [],
     articles: [],
     article: new Article(),
+    queries: new Queries(),
   }),
 
   mutations: {
@@ -33,9 +34,17 @@ export default {
     SET_ARTICLE(state, article) {
       state.article = Object.assign({}, article);
     },
+
+    UPDATE_QUERIES(state, { k, v }) {
+      state[k] = v;
+    },
   },
 
   actions: {
+    updateQueries({ commit }, { k, v }) {
+      commit('UPDATE_QUERIES', { k, v });
+    },
+
     async getCategories({ commit }) {
       async function apiCall(api) {
         const { res, success } = await getCategoryApi(api);

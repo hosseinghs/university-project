@@ -1,5 +1,5 @@
 import { addToArr } from '~/utils/general'
-import { Article } from '~/models/article'
+import { Article, Queries } from '~/models/article'
 import {
   getCategoryApi,
   getArticlesApi,
@@ -9,6 +9,7 @@ import {
 
 export default {
   namespaced: true,
+
   state: () => ({
     categories: [],
     articles: [],
@@ -27,7 +28,9 @@ export default {
         text: 'همه',
       },
     ],
+    queries: new Queries(),
   }),
+
   mutations: {
     SET_CATEGORIES(state, categories) {
       const list = state.categories
@@ -52,6 +55,9 @@ export default {
       const article = state.articles.find((article) => article.id === id)
       article.isPublished = !article.isPublished
     },
+    UPDATE_QUERIES(state, { k, v }) {
+      state[k] = v
+    },
   },
   actions: {
     clearArticle({ commit }) {
@@ -59,6 +65,9 @@ export default {
     },
     setNewArticleData({ commit }, { k, v }) {
       commit('SET_NEW_ARTICLE_DATA', { k, v })
+    },
+    updateQueries({ commit }, { k, v }) {
+      commit('UPDATE_QUERIES', { k, v })
     },
 
     /* -------------------------------- apiCalls -------------------------------- */
@@ -72,7 +81,7 @@ export default {
       return await this.$apiCaller(apiCall)()
     },
 
-    async getArticles({ commit }, type = 2) {
+    async getArticles({ state, commit }, type = 2) {
       async function apiCall(api) {
         const { success, res } = await getArticlesApi(api, type)
         if (success) commit('SET_ARTICLES', res)
