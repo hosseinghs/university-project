@@ -14,3 +14,14 @@ export class Article {
     createObjWithDefaultValues(this, defaults, options);
   }
 }
+
+export class Queries {
+  constructor(options) {
+    const defaults = {
+      query: true,
+      start: null,
+      end: null,
+    };
+    createObjWithDefaultValues(this, defaults, options);
+  }
+}
