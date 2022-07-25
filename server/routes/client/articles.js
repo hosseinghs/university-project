@@ -55,4 +55,10 @@ router.get("/getArticelsWithCategory", checkToken, async (req, res) => {
   });
 });
 
+router.get("/search", checkToken, async (req, res) => {
+  const { query, start, end } = req.query;
+  console.log(query, start, end);
+  return res.status(200).send({ res: [] });
+});
+
 module.exports = router;
