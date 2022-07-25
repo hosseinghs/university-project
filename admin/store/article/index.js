@@ -93,8 +93,8 @@ export default {
     async createArticle({ state, commit }) {
       const article = state.article
       async function apiCall(api) {
-        const { res, success } = await createArticleApi(api, article)
-        if (success) commit('ADD_ARTICLE_TO_THE_LIST', res)
+        const { success } = await createArticleApi(api, article)
+        if (success) commit('ADD_ARTICLE_TO_THE_LIST', article)
         return success
       }
       return await this.$apiCaller(apiCall)()
