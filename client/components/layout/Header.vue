@@ -5,20 +5,30 @@
     app
   >
     <hr class="__red__divider" />
-    <v-row align="center">
+    <v-row align="center" class="px-9">
       <v-col cols="2">
         <nuxt-link to="/">
           <v-img contain width="223" :src="require('~/assets/logo.jpg')" />
         </nuxt-link>
       </v-col>
-      <v-col cols="6">
+      <v-col cols="auto">
         <v-btn-toggle @change="getCategoryArticles($event)">
           <v-btn v-for="{ name, id } in categories" :key="id" :value="id">
             <span class="hidden-sm-and-down">{{ name }}</span>
           </v-btn>
         </v-btn-toggle>
       </v-col>
-      <v-col cols="auto" class="text-end">
+
+      <v-col>
+        <FormText
+          placeholder="جستجو بین مقالات"
+          label="جستجو"
+          dense
+          hide-details
+        />
+      </v-col>
+
+      <v-col cols="auto" lg="4" class="text-end">
         <span>
           {{ userName }}
         </span>
