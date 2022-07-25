@@ -68,13 +68,17 @@ export default {
   },
   methods: {
     mustFillRule,
+    ...mapActions(['setModalState']),
     ...mapActions('article', [
       'clearArticle',
       'setNewArticleData',
       'createArticle',
     ]),
-    submitForm() {
-      if (this.$refs.addArticleForm.validate()) this.createArticle()
+    async submitForm() {
+      if (this.$refs.addArticleForm.validate()) {
+        const res = await this.createArticle()
+        if (res) this.setModalState(false)
+      }
     },
   },
 }
