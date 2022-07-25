@@ -11,6 +11,7 @@
                 @change="setNewArticleData({ k: 'title', v: $event })"
               />
             </v-col>
+
             <v-col>
               <FormText
                 :rules="[mustFillRule]"
@@ -18,6 +19,16 @@
                 @change="setNewArticleData({ k: 'author', v: $event })"
               />
             </v-col>
+
+            <v-col>
+              <FormText
+                :rules="[mustFillRule]"
+                label="مقدمه"
+                placeholder="بین 30 تا 50 کاراکتر"
+                @change="setNewArticleData({ k: 'text', v: $event })"
+              />
+            </v-col>
+
             <v-col>
               <FormAutoComplete
                 item-text="name"
@@ -28,6 +39,7 @@
                 @change="setNewArticleData({ k: 'categoryId', v: $event })"
               />
             </v-col>
+
             <v-col>
               <FormEditor
                 @input="
@@ -38,6 +50,7 @@
                 "
               />
             </v-col>
+
             <FormBtnPrime type="submit" class="t-white px-10 mt-10">
               افزودن
             </FormBtnPrime>

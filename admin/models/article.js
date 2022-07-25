@@ -7,6 +7,7 @@ export class Article {
       author: null,
       createdDate: new Date().toISOString(),
       htmlContent: null,
+      text: null,
     }
     createObjWithDefaultValues(this, defaults, options)
   }
