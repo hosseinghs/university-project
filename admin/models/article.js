@@ -6,7 +6,7 @@ export class Article {
       categoryId: null,
       author: null,
       createdDate: new Date().toISOString(),
-      text: null,
+      htmlContent: null,
     }
     createObjWithDefaultValues(this, defaults, options)
   }

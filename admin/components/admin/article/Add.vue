@@ -30,10 +30,10 @@
             </v-col>
             <v-col>
               <FormEditor
-                @onEditorChange="
+                @input="
                   setNewArticleData({
-                    k: 'text',
-                    v: $event.html,
+                    k: 'htmlContent',
+                    v: $event,
                   })
                 "
               />
