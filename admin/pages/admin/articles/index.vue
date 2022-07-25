@@ -11,6 +11,16 @@
               :items="articleTypes"
             />
           </v-col>
+          <v-col cols="2">
+            <FormDatePicker
+              id="article-date-picker"
+              name="article-date-picker"
+              label="انتخاب بازه"
+              placeholder="از x تا y"
+              is-range
+              hide-details
+            />
+          </v-col>
           <v-col class="text-end">
             <FormBtnPrime class="t-white" @click.stop="setModalState(true)">
               افزودن مقاله جدید

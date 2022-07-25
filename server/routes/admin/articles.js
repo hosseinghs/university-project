@@ -46,7 +46,9 @@ router.get("/changePublishmentState", (req, res) => {
 
 router.get("/search", checkToken, async (req, res) => {
   const { query, start, end } = req.query;
+  const sqlRes = sql.query`SELECT * FROM article WHERE date BETWEEN '${start}' AND '${end}'`;
   console.log(query, start, end);
+  console.log(sqlRes);
   return res.status(200).send({ res: [] });
 });
 
