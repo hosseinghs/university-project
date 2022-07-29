@@ -8,8 +8,8 @@ export function getCategoryApi(api) {
   return api.$get(baseUrl + '/category')
 }
 
-export function getArticlesApi(api, type) {
-  return api.$get(baseUrl + `/get?type=${type}`)
+export function getArticlesApi(api, queries) {
+  return api.$get(baseUrl + `/get?${queries}`)
 }
 
 export function changeArticlePublishmentStateApi(api, id) {
