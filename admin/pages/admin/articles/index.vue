@@ -33,10 +33,24 @@
         </v-row>
       </v-col>
       <section>
-        <div v-for="article in articles" :key="article.id">
-          <v-col cols="12">
-            <AdminArticle :item="article" />
-          </v-col>
+        <div v-if="articles.length > 0">
+          <v-row v-for="article in articles" :key="article.id">
+            <v-col cols="12" lg="6">
+              <AdminArticle :item="article" />
+            </v-col>
+          </v-row>
+        </div>
+        <div class="text-center mt-10">
+          <div class="mb-2">
+            <v-img
+              cover
+              width="400"
+              class="mx-auto"
+              :src="require('~/assets/img/empty.svg')"
+              alt="no-data"
+            />
+          </div>
+          <span> هیچ مقاله ای موجود نمی باشد! </span>
         </div>
       </section>
     </v-card>
@@ -51,7 +65,6 @@ import { mapState, mapActions } from 'vuex'
 export default {
   name: 'ArticlesPage',
 
-  
   computed: {
     ...mapState('article', ['articles', 'articleTypes']),
   },
@@ -84,4 +97,3 @@ export default {
   },
 }
 </script>
-
