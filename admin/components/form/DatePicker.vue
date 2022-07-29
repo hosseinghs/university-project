@@ -3,7 +3,7 @@
     <v-text-field
       v-bind="$attrs"
       color="#C89A67"
-      :value="date"
+      :value="dateValue"
       clearable
       outlined
       dense
@@ -69,7 +69,9 @@ export default {
       if (!date) return
       let res = null
       if (this.isRange) {
-        res = `${date[0]} تا ${date[1]}`
+        res = `${new Date(date[0]).toLocaleString('fa-IR')} تا ${new Date(
+          date[1]
+        ).toLocaleString('fa-IR')}`
       } else res = date
       return res
     },
