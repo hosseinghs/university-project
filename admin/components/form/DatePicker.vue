@@ -12,14 +12,12 @@
       @click:clear="$emit('clearDate')"
     />
     <datePicker
-      :id="`${name}-input`"
       v-model="date"
       :show="show"
       :min="min"
       :range="isRange"
       :color="color"
       display-format="jYYYY-jMM-jDD"
-      :custom-input="`${name}-input`"
       @close="show = false"
     />
   </div>
@@ -34,11 +32,6 @@ export default {
   },
 
   props: {
-    name: {
-      type: String,
-      default: '',
-      required: true,
-    },
     min: {
       type: String,
       required: false,
