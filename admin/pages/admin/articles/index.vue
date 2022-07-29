@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-card elevation="0" class="bg-transparent">
+    <v-card elevation="0" max-width="1110" class="mx-auto bg-transparent">
       <v-col>
         <v-row align="center">
           <v-col lg="2">
