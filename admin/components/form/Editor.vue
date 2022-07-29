@@ -19,15 +19,18 @@ if (process.client) {
 }
 export default {
   name: 'CKEditorComponent',
+
   components: {
     ckeditor: CKEditor.component,
   },
+
   props: {
     id: {
       type: String,
       default: 'editor',
     },
   },
+
   data() {
     return {
       classicEditor: ClassicEditor,
@@ -40,6 +43,7 @@ export default {
       editorElement: null,
     }
   },
+  
   methods: {
     insertTextAtTheEnd(text) {
       function findCorrectPosition(htmlStr) {
