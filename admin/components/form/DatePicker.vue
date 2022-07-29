@@ -27,10 +27,12 @@
 
 <script>
 import VuePersianDatetimePicker from 'vue-persian-datetime-picker'
+
 export default {
   components: {
     datePicker: VuePersianDatetimePicker,
   },
+
   props: {
     name: {
       type: String,
@@ -55,10 +57,12 @@ export default {
       default: false,
     },
   },
+
   data: () => ({
     date: null,
     show: false,
   }),
+
   computed: {
     dateValue() {
       const date = this.date
@@ -70,6 +74,7 @@ export default {
       return res
     },
   },
+
   watch: {
     date(val) {
       let date = val
