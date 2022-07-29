@@ -32,3 +32,12 @@ export function faDate(date) {
     return new Date(date).toLocaleDateString('fa-IR')
   return null
 }
+
+export function generateQueryStringFromAnObject(obj) {
+  if (!obj) return
+  let q = ''
+  for (const [key, value] of Object.entries(obj)) {
+    if (value && value !== null) q += `${key}=${value}&`
+  }
+  return q
+}
