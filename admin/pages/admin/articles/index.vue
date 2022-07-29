@@ -5,13 +5,13 @@
         <v-row align="center">
           <v-col lg="2">
             <FormAutoComplete
-              v-model="articleType"
               label="نوع"
               item-value="id"
               outlined
               dense
               hide-details
               :items="articleTypes"
+              @change="updateQueries({ key: 'type', v: $event })"
             />
           </v-col>
           <v-col cols="5">
@@ -61,15 +61,10 @@ export default {
     ...mapState('article', ['articles', 'articleTypes']),
   },
 
-  watch: {
-    articleType(val) {
-      this.getArticles(val)
-    },
-  },
-
   created() {
     this.fireApies()
   },
+
   methods: {
     ...mapActions(['setModalState']),
     ...mapActions('article', ['getCategories', 'getArticles', 'updateQueries']),

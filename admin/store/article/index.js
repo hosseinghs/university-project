@@ -1,4 +1,4 @@
-import { addToArr } from '~/utils/general'
+import { addToArr, generateQueryStringFromAnObject } from '~/utils/general'
 import { Article, Queries } from '~/models/article'
 import {
   getCategoryApi,
@@ -66,8 +66,9 @@ export default {
     setNewArticleData({ commit }, { k, v }) {
       commit('SET_NEW_ARTICLE_DATA', { k, v })
     },
-    updateQueries({ commit }, { k, v }) {
+    updateQueries({ commit, dispatch }, { k, v }) {
       commit('UPDATE_QUERIES', { k, v })
+      dispatch('getArticles')
     },
 
     /* -------------------------------- apiCalls -------------------------------- */
@@ -81,9 +82,10 @@ export default {
       return await this.$apiCaller(apiCall)()
     },
 
-    async getArticles({ state, commit }, type = 2) {
+    async getArticles({ state, commit }) {
+      const queries = generateQueryStringFromAnObject(state.queries)
       async function apiCall(api) {
-        const { success, res } = await getArticlesApi(api, type)
+        const { success, res } = await getArticlesApi(api, queries)
         if (success) commit('SET_ARTICLES', res)
         return success
       }
