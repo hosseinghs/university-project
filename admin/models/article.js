@@ -16,9 +16,10 @@ export class Article {
 export class Queries {
   constructor(options) {
     const defaults = {
-      query: true,
+      query: null,
       start: null,
       end: null,
+      type: 2,
     }
     createObjWithDefaultValues(this, defaults, options)
   }
