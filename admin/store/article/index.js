@@ -16,15 +16,15 @@ export default {
     article: new Article(),
     articleTypes: [
       {
-        id: 0,
+        id: '0',
         text: 'منتشرنشده',
       },
       {
-        id: 1,
+        id: '1',
         text: 'منتشرشده',
       },
       {
-        id: 2,
+        id: '2',
         text: 'همه',
       },
     ],
