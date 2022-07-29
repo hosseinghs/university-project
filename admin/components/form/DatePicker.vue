@@ -3,7 +3,7 @@
     <v-text-field
       v-bind="$attrs"
       color="#C89A67"
-      :value="dateValue"
+      :value="date"
       clearable
       outlined
       dense
@@ -11,12 +11,14 @@
       @click.stop="show = true"
       @click:clear="$emit('clearDate')"
     />
-    <datePicker
+    <date-picker
+      :id="`${name}-input`"
       v-model="date"
+      :custom-input="`${name}-input`"
       :show="show"
-      :min="min"
-      :range="isRange"
       :color="color"
+      :range="isRange"
+      format="YYYY-MM-DD"
       display-format="jYYYY-jMM-jDD"
       @close="show = false"
     />
@@ -32,6 +34,11 @@ export default {
   },
 
   props: {
+    name: {
+      type: String,
+      default: '',
+      required: true,
+    },
     min: {
       type: String,
       required: false,
