@@ -11,7 +11,7 @@
               dense
               hide-details
               :items="articleTypes"
-              @change="updateQueries({ key: 'type', v: $event })"
+              @change="updateQueries({ k: 'type', v: $event })"
             />
           </v-col>
           <v-col cols="5">
@@ -51,12 +51,7 @@ import { mapState, mapActions } from 'vuex'
 export default {
   name: 'ArticlesPage',
 
-  data() {
-    return {
-      articleType: 2,
-    }
-  },
-
+  
   computed: {
     ...mapState('article', ['articles', 'articleTypes']),
   },
@@ -90,4 +85,3 @@ export default {
 }
 </script>
 
-<style></style>
