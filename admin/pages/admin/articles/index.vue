@@ -8,6 +8,9 @@
               v-model="articleType"
               label="نوع"
               item-value="id"
+              outlined
+              dense
+              hide-details
               :items="articleTypes"
             />
           </v-col>
