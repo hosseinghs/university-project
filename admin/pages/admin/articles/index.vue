@@ -73,6 +73,7 @@ export default {
       this.updateQueries({
         k: 'start',
         v: v.startDate,
+        forceUpdate: false,
       })
 
       this.updateQueries({

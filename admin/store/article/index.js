@@ -66,9 +66,9 @@ export default {
     setNewArticleData({ commit }, { k, v }) {
       commit('SET_NEW_ARTICLE_DATA', { k, v })
     },
-    updateQueries({ commit, dispatch }, { k, v }) {
+    updateQueries({ commit, dispatch }, { k, v, forceUpdate = true }) {
       commit('UPDATE_QUERIES', { k, v })
-      dispatch('getArticles')
+      if (forceUpdate) dispatch('getArticles')
     },
 
     /* -------------------------------- apiCalls -------------------------------- */
