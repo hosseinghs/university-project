@@ -26,14 +26,20 @@ router.post("/create", checkToken, async (req, res) => {
 });
 
 router.get("/get", checkToken, async (req, res) => {
-  const { type } = req.query;
+  const { type, start, end } = req.query;
   const allArticlesType = 2;
-  const findAllArticles = "SELECT * FROM article";
-  const findPublishedOrUnPublishedArticles = `SELECT * FROM article WHERE isPublished = ${type}`;
-  const sqlRes =
-    +type === allArticlesType
-      ? await sql.query(findAllArticles)
-      : await sql.query(findPublishedOrUnPublishedArticles);
+  let q = "";
+
+  if (start && end) {
+    if (type === allArticlesType) q = "SELECT * FROM article";
+    else
+      q = `SELECT * FROM article WHERE date BETWEEN ${start} AND ${end} isPublished = ${type}`;
+  } else {
+    if (type === allArticlesType) q = "SELECT * FROM article";
+    else q = `SELECT * FROM article WHERE isPublished = ${type}`;
+  }
+
+  const sqlRes = await sql.query(q);
   const articlesList = sqlRes.recordsets[0];
   res.status(200).send({ success: true, res: articlesList });
 });
