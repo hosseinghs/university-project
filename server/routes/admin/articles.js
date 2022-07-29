@@ -27,7 +27,7 @@ router.post("/create", checkToken, async (req, res) => {
 
 router.get("/get", checkToken, async (req, res) => {
   const { type, start, end } = req.query;
-  const allArticlesType = 2;
+  const allArticlesType = '2';
   let q = "";
 
   if (start && end) {
