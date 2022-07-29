@@ -14,7 +14,7 @@
               :items="articleTypes"
             />
           </v-col>
-          <v-col cols="3">
+          <v-col cols="5">
             <FormDatePicker
               id="article-date-picker"
               name="article-date-picker"
