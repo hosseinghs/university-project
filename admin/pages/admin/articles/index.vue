@@ -22,6 +22,7 @@
               placeholder="از x تا y"
               is-range
               hide-details
+              @update="updateDateValues($event)"
             />
           </v-col>
           <v-col class="text-end">
@@ -71,7 +72,20 @@ export default {
   },
   methods: {
     ...mapActions(['setModalState']),
-    ...mapActions('article', ['getCategories', 'getArticles']),
+    ...mapActions('article', ['getCategories', 'getArticles', 'updateQueries']),
+
+    updateDateValues(v) {
+      this.updateQueries({
+        k: 'start',
+        v: v.startDate,
+      })
+
+      this.updateQueries({
+        k: 'end',
+        v: v.endDate,
+      })
+    },
+
     fireApies() {
       const promises = [this.getCategories(), this.getArticles()]
       Promise.all(promises)

@@ -56,7 +56,7 @@ export default {
       article.isPublished = !article.isPublished
     },
     UPDATE_QUERIES(state, { k, v }) {
-      state[k] = v
+      state.queries[k] = v
     },
   },
   actions: {
