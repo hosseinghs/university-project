@@ -28,11 +28,18 @@
           <v-icon dark> mdi-upload</v-icon>
         </v-btn>
       </UiTooltip>
-      <UiToolTip text="ویرایش">
-        <v-btn class="mx-2" fab small @click.stop="$emit('editArticle', item)">
-          <v-icon dark> mdi-pen</v-icon>
-        </v-btn>
-      </UiToolTip>
+      <UiTooltip text="ویرایش">
+        <span>
+          <v-btn
+            class="mx-2"
+            fab
+            small
+            @click.stop="$emit('editArticle', item)"
+          >
+            <v-icon dark> mdi-pen</v-icon>
+          </v-btn>
+        </span>
+      </UiTooltip>
     </v-card-actions>
   </v-card>
 </template>
