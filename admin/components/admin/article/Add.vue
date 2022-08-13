@@ -3,28 +3,32 @@
     <v-card elevation="0">
       <v-row align="center">
         <v-col>
+          {{article}}
           <v-form ref="addArticleForm" @submit.prevent="submitForm()">
             <v-col>
               <FormText
-                :rules="[mustFillRule]"
                 label="عنوان"
+                :rules="[mustFillRule]"
+                :value="article.title"
                 @change="setNewArticleData({ k: 'title', v: $event })"
               />
             </v-col>
 
             <v-col>
               <FormText
-                :rules="[mustFillRule]"
                 label="نویسنده"
+                :rules="[mustFillRule]"
+                :value="article.author"
                 @change="setNewArticleData({ k: 'author', v: $event })"
               />
             </v-col>
 
             <v-col>
               <FormText
-                :rules="[mustFillRule]"
                 label="مقدمه"
                 placeholder="بین 30 تا 50 کاراکتر"
+                :rules="[mustFillRule]"
+                :value="article.text"
                 @change="setNewArticleData({ k: 'text', v: $event })"
               />
             </v-col>
@@ -35,6 +39,7 @@
                 item-value="id"
                 label="دسته بندی"
                 :items="categories"
+                :value="article.category"
                 :rules="[mustFillRule]"
                 @change="setNewArticleData({ k: 'categoryId', v: $event })"
               />
@@ -42,6 +47,7 @@
 
             <v-col>
               <FormEditor
+              :value="article.htmlContent"
                 @input="
                   setNewArticleData({
                     k: 'htmlContent',
@@ -69,7 +75,7 @@ export default {
 
   computed: {
     ...mapState(['isModalVisible']),
-    ...mapState('article', ['categories']),
+    ...mapState('article', ['categories', 'article']),
   },
   watch: {
     isModalVisible(val) {
