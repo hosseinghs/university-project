@@ -10,6 +10,7 @@
           class="mx-2"
           fab
           dark
+          small
           :color="isPublished ? 'red' : 'primary'"
           @click.stop="$emit('generateWarningConfig', { item, enable: false })"
         >
