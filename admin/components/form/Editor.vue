@@ -29,6 +29,10 @@ export default {
       type: String,
       default: 'editor',
     },
+    value: {
+      type: String,
+      default: '',
+    },
   },
 
   data() {
@@ -43,7 +47,7 @@ export default {
       editorElement: null,
     }
   },
-  
+
   methods: {
     insertTextAtTheEnd(text) {
       function findCorrectPosition(htmlStr) {
