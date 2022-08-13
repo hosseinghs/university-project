@@ -1,18 +1,17 @@
 <template>
   <v-card elevation="1" class="px-2 py-2">
     <v-card-title>{{ item.title }}</v-card-title>
-    <div v-html="item.text"></div>
-    <div>نوشته شده توسط {{ item.author }}</div>
-    <div>تاریخ ایجاد {{ faDate(item.date) }}</div>
-    <v-card-actions>
+    <v-card-text v-html="item.text"></v-card-text>
+    <v-card-subtitle>نوشته شده توسط {{ item.author }}</v-card-subtitle>
+    <v-card-text>تاریخ ایجاد {{ faDate(item.date) }}</v-card-text>
+    <v-card-actions class="justify-end">
       <UiTooltip v-if="isPublished" text="نامنتشر کردن">
         <v-btn
           class="mx-2"
           fab
           dark
-          small
           :color="isPublished ? 'red' : 'primary'"
-          @click.stop="generateWarningConfig(item)"
+          @click.stop="$emit('generateWarningConfig', { item, enable: false })"
         >
           <v-icon dark>mdi-upload-off</v-icon>
         </v-btn>
@@ -24,13 +23,17 @@
           dark
           small
           :color="isPublished ? 'red' : 'primary'"
-          @click.stop="generateWarningConfig(item)"
+          @click.stop="$emit('generateWarningConfig', { item, enable: true })"
         >
           <v-icon dark> mdi-upload</v-icon>
         </v-btn>
       </UiTooltip>
+      <UiToolTip text="ویرایش">
+        <v-btn class="mx-2" fab small @click.stop="$emit('editArticle', item)">
+          <v-icon dark> mdi-pen</v-icon>
+        </v-btn>
+      </UiToolTip>
     </v-card-actions>
-    <!-- <UiWarning @submitActionClicked="changeState(item.id)" /> -->
   </v-card>
 </template>
 
