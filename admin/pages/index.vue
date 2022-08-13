@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-card class="px-4 py-4 mx-auto">
+    <v-card class="px-8 py-8 mx-auto">
       <v-form ref="login" @submit.prevent="submitForm()">
         <h2>به ادمین خوش آمدید!</h2>
         <h5>برای ادامه وارد شوید</h5>
