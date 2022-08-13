@@ -36,7 +36,10 @@
         <div v-if="articles.length > 0">
           <v-row v-for="article in articles" :key="article.id">
             <v-col cols="12" lg="6">
-              <AdminArticle :item="article" />
+              <AdminArticle
+                :item="article"
+                @editArticle="openEditModal($event)"
+              />
             </v-col>
           </v-row>
         </div>
@@ -54,8 +57,8 @@
         </div>
       </section>
     </v-card>
-    <UiModal full-screen title="افزودن مقاله جدید">
-      <AdminArticleAdd />
+    <UiModal full-screen :title="isEdit ? 'ویرایش مقاله' : 'افزودن مقاله جدید'">
+      <AdminArticleAdd :is-edit="isEdit" />
     </UiModal>
   </v-container>
 </template>
@@ -64,6 +67,12 @@
 import { mapState, mapActions } from 'vuex'
 export default {
   name: 'ArticlesPage',
+
+  data() {
+    return {
+      isEdit: false,
+    }
+  },
 
   computed: {
     ...mapState('article', ['articles', 'articleTypes']),
@@ -75,7 +84,12 @@ export default {
 
   methods: {
     ...mapActions(['setModalState']),
-    ...mapActions('article', ['getCategories', 'getArticles', 'updateQueries']),
+    ...mapActions('article', [
+      'getCategories',
+      'getArticles',
+      'setArticle',
+      'updateQueries',
+    ]),
 
     updateDateValues(v) {
       this.updateQueries({
@@ -88,6 +102,12 @@ export default {
         k: 'end',
         v: v.endDate,
       })
+    },
+
+    openEditModal(article) {
+      this.isEdit = true
+      this.setArticle(article)
+      this.setModalState(true)
     },
 
     fireApies() {

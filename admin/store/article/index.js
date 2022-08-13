@@ -58,6 +58,9 @@ export default {
     UPDATE_QUERIES(state, { k, v }) {
       state.queries[k] = v
     },
+    SET_ARTICLE(state, article) {
+      state.article = Object.assign({}, article)
+    },
   },
   actions: {
     clearArticle({ commit }) {
@@ -69,6 +72,9 @@ export default {
     updateQueries({ commit, dispatch }, { k, v, forceUpdate = true }) {
       commit('UPDATE_QUERIES', { k, v })
       if (forceUpdate) dispatch('getArticles')
+    },
+    setArticle({ commit }, article) {
+      commit('SET_ARTICLE', article)
     },
 
     /* -------------------------------- apiCalls -------------------------------- */
