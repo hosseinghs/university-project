@@ -58,7 +58,7 @@
             </v-col>
 
             <FormBtnPrime type="submit" class="t-white px-10 mt-10">
-             {{isEdit ? 'ویرایش' : 'افزودن'}}
+              {{ isEdit ? 'ویرایش' : 'افزودن' }}
             </FormBtnPrime>
           </v-form>
         </v-col>
@@ -96,13 +96,16 @@ export default {
     mustFillRule,
     ...mapActions(['setModalState']),
     ...mapActions('article', [
+      'editArticle',
       'clearArticle',
-      'setNewArticleData',
       'createArticle',
+      'setNewArticleData',
     ]),
     async submitForm() {
       if (this.$refs.addArticleForm.validate()) {
-        const res = await this.createArticle()
+        const res = this.isEdit
+          ? await this.editArticle()
+          : await this.createArticle()
         if (res) this.setModalState(false)
       }
     },
