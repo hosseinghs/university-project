@@ -3,7 +3,6 @@
     <v-card elevation="0">
       <v-row align="center">
         <v-col>
-          {{article}}
           <v-form ref="addArticleForm" @submit.prevent="submitForm()">
             <v-col>
               <FormText
@@ -35,11 +34,11 @@
 
             <v-col>
               <FormAutoComplete
+                label="دسته بندی"
                 item-text="name"
                 item-value="id"
-                label="دسته بندی"
+                :value="article.categoryId"
                 :items="categories"
-                :value="article.category"
                 :rules="[mustFillRule]"
                 @change="setNewArticleData({ k: 'categoryId', v: $event })"
               />
@@ -47,7 +46,7 @@
 
             <v-col>
               <FormEditor
-              :value="article.htmlContent"
+                :value="article.htmlContent"
                 @input="
                   setNewArticleData({
                     k: 'htmlContent',
@@ -58,7 +57,7 @@
             </v-col>
 
             <FormBtnPrime type="submit" class="t-white px-10 mt-10">
-              افزودن
+             {{isEdit ? 'ویرایش' : 'افزودن'}}
             </FormBtnPrime>
           </v-form>
         </v-col>
@@ -72,6 +71,13 @@ import { mapState, mapActions } from 'vuex'
 import { mustFillRule } from '~/utils/validations'
 export default {
   name: 'AddNewArticleComponent',
+
+  props: {
+    isEdit: {
+      type: Boolean,
+      default: false,
+    },
+  },
 
   computed: {
     ...mapState(['isModalVisible']),
