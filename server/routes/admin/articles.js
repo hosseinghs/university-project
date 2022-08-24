@@ -31,12 +31,12 @@ router.get("/get", checkToken, async (req, res) => {
   let q = "";
 
   if (start && end) {
-    if (type === allArticlesType) q = "SELECT * FROM article";
+    if (type === allArticlesType) q = `SELECT * FROM article WHERE date BETWEEN '${start}' AND '${end}'`;
     else
-      q = `SELECT * FROM article WHERE date BETWEEN ${start} AND ${end} isPublished = ${type}`;
+      q = `SELECT * FROM article WHERE date BETWEEN '${start}' AND '${end}' isPublished = '${type}'`;
   } else {
     if (type === allArticlesType) q = "SELECT * FROM article";
-    else q = `SELECT * FROM article WHERE isPublished = ${type}`;
+    else q = `SELECT * FROM article WHERE isPublished = '${type}'`;
   }
 
   const sqlRes = await sql.query(q);
