@@ -10,8 +10,7 @@ router.get("/category", checkToken, async (_, res) => {
 });
 
 router.post("/create", checkToken, async (req, res) => {
-  const { title, categoryId, author, text, htmlContent } =
-    req.body;
+  const { title, categoryId, author, text, htmlContent } = req.body;
 
   sql.query(
     `INSERT INTO article (title, categoryId, author, text, isPublished, htmlContent, img)
@@ -25,13 +24,27 @@ router.post("/create", checkToken, async (req, res) => {
   );
 });
 
+router.put("/edit", checkToken, async (req, res) => {
+  const { id, title, categoryId, author, text, htmlContent } = req.body;
+  sql.query(
+    `UPDATE article SET title='${title}', categoryId = '${categoryId}', author = '${author}', text = '${text}', isPublished = '${true}' , htmlContent = '${htmlContent}' WHERE id = '${id}'`,
+    (err) => {
+      if (err) res.status(400).send({ success: false, des: err });
+      return res
+        .status(200)
+        .send({ success: true, des: "با موفقیت ویرایش شد!" });
+    }
+  );
+});
+
 router.get("/get", checkToken, async (req, res) => {
   const { type, start, end } = req.query;
-  const allArticlesType = '2';
+  const allArticlesType = "2";
   let q = "";
 
   if (start && end) {
-    if (type === allArticlesType) q = `SELECT * FROM article WHERE date BETWEEN '${start}' AND '${end}'`;
+    if (type === allArticlesType)
+      q = `SELECT * FROM article WHERE date BETWEEN '${start}' AND '${end}'`;
     else
       q = `SELECT * FROM article WHERE date BETWEEN '${start}' AND '${end}' isPublished = '${type}'`;
   } else {
