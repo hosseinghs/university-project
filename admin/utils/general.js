@@ -27,6 +27,14 @@ export function deleteKeyFromObj(obj, ...keys) {
   })
 }
 
+export function deleteObjFromArr(arr, id) {
+  if (Array.isArray(arr)) {
+    const doomedObj = arr.find((obj) => obj.id === id)
+    const doomedObjIndex = arr.indexOf(doomedObj)
+    arr.splice(doomedObjIndex, 1)
+  }
+}
+
 export function faDate(date) {
   if (date && date !== '0001-01-01T00:00:00')
     return new Date(date).toLocaleDateString('fa-IR')
