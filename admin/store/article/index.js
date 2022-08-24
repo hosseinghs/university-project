@@ -3,6 +3,7 @@ import { Article, Queries } from '~/models/article'
 import {
   getCategoryApi,
   getArticlesApi,
+  editArticleApi,
   createArticleApi,
   changeArticlePublishmentStateApi,
 } from '~/services/articles'
@@ -61,6 +62,10 @@ export default {
     SET_ARTICLE(state, article) {
       state.article = Object.assign({}, article)
     },
+
+    UPDATE_EXISTING_ARTICLE(state, editedArticle) {
+      console.log(editedArticle)
+    },
   },
   actions: {
     clearArticle({ commit }) {
@@ -103,6 +108,16 @@ export default {
       async function apiCall(api) {
         const { success } = await createArticleApi(api, article)
         if (success) commit('ADD_ARTICLE_TO_THE_LIST', article)
+        return success
+      }
+      return await this.$apiCaller(apiCall)()
+    },
+
+    async editArticle({ state, commit }) {
+      const article = state.article
+      async function apiCall(api) {
+        const { success } = await editArticleApi(api, article)
+        if (success) commit('UPDATE_EXISTING_ARTICLE', article)
         return success
       }
       return await this.$apiCaller(apiCall)()
