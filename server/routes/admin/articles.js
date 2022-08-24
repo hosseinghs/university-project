@@ -76,4 +76,21 @@ router.get("/search", checkToken, async (req, res) => {
   return res.status(200).send({ res: [] });
 });
 
+router.put("/changePublishmentState", checkToken, async (req, res) => {
+  const { id, isPublished } = req.query;
+  sql.query(
+    `UPDATE article SET isPublished = '${!isPublished}' WHERE id = '${id}'`,
+    (err) => {
+      if (err)
+        return res.status(400).send({ success: false, des: "عملیات ناموفق!" });
+      return res.status(200).send({
+        success: true,
+        des: isPublished
+          ? "مقاله با موفقیت از سایت خارج شد!"
+          : "مقاله با موفقیت منتشر شد!",
+      });
+    }
+  );
+});
+
 module.exports = router;
