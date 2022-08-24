@@ -20,6 +20,8 @@ export function deleteArticleApi(api, id) {
   return api.$delete(baseUrl + `/delete?id=${id}`)
 }
 
-export function changePublishmentStateApi(api, id) {
-  return api.$put(baseUrl + `/changePublishmentState?id=${id}`)
+export function changePublishmentStateApi(api, { id, isPublished }) {
+  return api.$put(
+    baseUrl + `/changePublishmentState?id=${id}&isPublished=${isPublished}`
+  )
 }
