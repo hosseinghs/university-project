@@ -10,12 +10,12 @@ router.get("/category", checkToken, async (_, res) => {
 });
 
 router.post("/create", checkToken, async (req, res) => {
-  const { title, categoryId, createdDate, author, text, htmlContent } =
+  const { title, categoryId, author, text, htmlContent } =
     req.body;
 
   sql.query(
-    `INSERT INTO article (title, categoryId, author, date, text, isPublished, htmlContent, img)
-         VALUES ('${title}', '${categoryId}', '${author}', '${createdDate}', '${text}', '${true}' , '${htmlContent}' , '${null}');`,
+    `INSERT INTO article (title, categoryId, author, text, isPublished, htmlContent, img)
+         VALUES ('${title}', '${categoryId}', '${author}', '${text}', '${true}' , '${htmlContent}' , '${null}');`,
     (err) => {
       if (err) res.status(400).send({ success: false, des: err });
       return res

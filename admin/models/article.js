@@ -5,7 +5,7 @@ export class Article {
     const defaults = {
       categoryId: null,
       author: null,
-      createdDate: new Date().toISOString(),
+      createdDate: null,
       htmlContent: null,
       text: null,
     }
