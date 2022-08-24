@@ -5,42 +5,52 @@
     <v-card-subtitle>نوشته شده توسط {{ item.author }}</v-card-subtitle>
     <v-card-text>تاریخ ایجاد {{ faDate(item.date) }}</v-card-text>
     <v-card-actions class="justify-end">
-      <UiTooltip v-if="isPublished" text="نامنتشر کردن">
+      <UiTooltip v-if="isPublished" text="درآوردن از حالت انتشار">
         <v-btn
           class="mx-2"
+          color="orange"
           fab
-          dark
           small
-          :color="isPublished ? 'red' : 'primary'"
-          @click.stop="$emit('generateWarningConfig', { item, enable: false })"
+          @click.stop="$emit('unpublish', item)"
         >
-          <v-icon dark>mdi-upload-off</v-icon>
+          <v-icon>mdi-upload-off</v-icon>
         </v-btn>
       </UiTooltip>
       <UiTooltip v-else text="انتشار">
         <v-btn
           class="mx-2"
+          color="primary"
           fab
-          dark
           small
-          :color="isPublished ? 'red' : 'primary'"
-          @click.stop="$emit('generateWarningConfig', { item, enable: true })"
+          @click.stop="$emit('publish', item)"
         >
-          <v-icon dark> mdi-upload</v-icon>
+          <v-icon> mdi-upload</v-icon>
         </v-btn>
       </UiTooltip>
 
       <UiTooltip text="ویرایش">
         <span>
-          <v-btn class="mx-2" fab small @click.stop="$emit('edit', item)">
-            <v-icon dark> mdi-pen</v-icon>
+          <v-btn
+            color="purple"
+            class="mx-2"
+            fab
+            small
+            @click.stop="$emit('edit', item)"
+          >
+            <v-icon> mdi-pen</v-icon>
           </v-btn>
         </span>
       </UiTooltip>
       <UiTooltip text="حذف">
         <span>
-          <v-btn class="mx-2" fab small @click.stop="$emit('delete', item)">
-            <v-icon dark> mdi-close</v-icon>
+          <v-btn
+            color="red"
+            class="mx-2"
+            fab
+            small
+            @click.stop="$emit('delete', item)"
+          >
+            <v-icon> mdi-close</v-icon>
           </v-btn>
         </span>
       </UiTooltip>
