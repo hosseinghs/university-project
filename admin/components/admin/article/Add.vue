@@ -87,8 +87,8 @@ export default {
   watch: {
     isModalVisible(val) {
       if (!val) {
-        this.clearArticle()
         this.$refs.addArticleForm.resetValidation()
+        // this.clearArticle()
       }
     },
   },
