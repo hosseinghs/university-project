@@ -10,6 +10,7 @@ import {
   editArticleApi,
   createArticleApi,
   deleteArticleApi,
+  changePublishmentStateApi,
 } from '~/services/articles'
 
 export default {
@@ -56,7 +57,10 @@ export default {
     SET_NEW_ARTICLE_DATA(state, { k, v }) {
       state.article[k] = v
     },
-    DELETE_ARTICLE(state, id) {},
+    DELETE_ARTICLE(state, id) {
+      const list = state.articles
+      deleteObjFromArr(list, id)
+    },
     UPDATE_QUERIES(state, { k, v }) {
       state.queries[k] = v
     },
@@ -67,6 +71,12 @@ export default {
     UPDATE_EXISTING_ARTICLE(state, id) {
       const list = state.articles
       deleteObjFromArr(list, id)
+    },
+
+    CHANGE_ARTICLE_PUBLISHMENT(state, id) {
+      const list = state.articles
+      const article = list.find((art) => art.id === id)
+      article.isPublished = !article.isPublished
     },
   },
   actions: {
@@ -129,6 +139,18 @@ export default {
       async function apiCall(api) {
         const { success } = await deleteArticleApi(api, id)
         if (success) commit('DELETE_ARTICLE', id)
+        return success
+      }
+      return await this.$apiCaller(apiCall)()
+    },
+
+    async changePublishmentState({ commit }, { id, isPublished }) {
+      async function apiCall(api) {
+        const { success } = await changePublishmentStateApi(api, {
+          id,
+          isPublished,
+        })
+        if (success) commit('CHANGE_ARTICLE_PUBLISHMENT', id)
         return success
       }
       return await this.$apiCaller(apiCall)()

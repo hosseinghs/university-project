@@ -46,6 +46,8 @@
                 :item="article"
                 @edit="openEditModal($event)"
                 @delete="generateDeleteWarning($event)"
+                @publish="changePublishmentState($event)"
+                @unpublish="changePublishmentState($event)"
               />
             </v-col>
           </v-row>
@@ -100,6 +102,7 @@ export default {
       'getCategories',
       'updateQueries',
       'deleteArticle',
+      'changePublishmentState',
     ]),
 
     generateDeleteWarning({ id }) {
