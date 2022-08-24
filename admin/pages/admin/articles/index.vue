@@ -44,7 +44,8 @@
             >
               <AdminArticle
                 :item="article"
-                @editArticle="openEditModal($event)"
+                @edit="openEditModal($event)"
+                @delete="generateDeleteWarning($event)"
               />
             </v-col>
           </v-row>
@@ -66,6 +67,7 @@
     <UiModal full-screen :title="isEdit ? 'ویرایش مقاله' : 'افزودن مقاله جدید'">
       <AdminArticleAdd :is-edit="isEdit" />
     </UiModal>
+    <UiWarning @submitActionClicked="deleteArticleFunc(articleId)" />
   </v-container>
 </template>
 
@@ -77,6 +79,7 @@ export default {
   data() {
     return {
       isEdit: false,
+      articleId: null,
     }
   },
 
@@ -90,12 +93,31 @@ export default {
 
   methods: {
     ...mapActions(['setModalState']),
+    ...mapActions('warningGenerator', ['generateWarning', 'setWarningState']),
     ...mapActions('article', [
-      'getCategories',
-      'getArticles',
       'setArticle',
+      'getArticles',
+      'getCategories',
       'updateQueries',
+      'deleteArticle',
     ]),
+
+    generateDeleteWarning({ id }) {
+      this.articleId = id
+      const _title = `حذف کردن مقاله`
+      const color = 'red'
+      const config = {
+        color,
+        title: _title,
+        text: 'آیا عملیات مورد تایید است؟',
+      }
+      this.generateWarning(config)
+    },
+
+    async deleteArticleFunc(id) {
+      const res = await this.deleteArticle(id)
+      if (res) this.setWarningState(!!res)
+    },
 
     updateDateValues(v) {
       this.updateQueries({

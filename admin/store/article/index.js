@@ -1,11 +1,15 @@
-import { addToArr, generateQueryStringFromAnObject } from '~/utils/general'
+import {
+  addToArr,
+  deleteObjFromArr,
+  generateQueryStringFromAnObject,
+} from '~/utils/general'
 import { Article, Queries } from '~/models/article'
 import {
   getCategoryApi,
   getArticlesApi,
   editArticleApi,
   createArticleApi,
-  changeArticlePublishmentStateApi,
+  deleteArticleApi,
 } from '~/services/articles'
 
 export default {
@@ -52,10 +56,7 @@ export default {
     SET_NEW_ARTICLE_DATA(state, { k, v }) {
       state.article[k] = v
     },
-    CHANGE_ARTICLE_PUBLISHMENT_STATE(state, id) {
-      const article = state.articles.find((article) => article.id === id)
-      article.isPublished = !article.isPublished
-    },
+    DELETE_ARTICLE(state, id) {},
     UPDATE_QUERIES(state, { k, v }) {
       state.queries[k] = v
     },
@@ -63,8 +64,9 @@ export default {
       state.article = Object.assign({}, article)
     },
 
-    UPDATE_EXISTING_ARTICLE(state, editedArticle) {
-      console.log(editedArticle)
+    UPDATE_EXISTING_ARTICLE(state, id) {
+      const list = state.articles
+      deleteObjFromArr(list, id)
     },
   },
   actions: {
@@ -123,10 +125,10 @@ export default {
       return await this.$apiCaller(apiCall)()
     },
 
-    async changeArticlePublishmentState({ commit }, id) {
+    async deleteArticle({ commit }, id) {
       async function apiCall(api) {
-        const { success } = await changeArticlePublishmentStateApi(api, id)
-        if (success) commit('CHANGE_ARTICLE_PUBLISHMENT_STATE', id)
+        const { success } = await deleteArticleApi(api, id)
+        if (success) commit('DELETE_ARTICLE', id)
         return success
       }
       return await this.$apiCaller(apiCall)()
