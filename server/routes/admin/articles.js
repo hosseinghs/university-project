@@ -57,10 +57,15 @@ router.get("/get", checkToken, async (req, res) => {
   res.status(200).send({ success: true, res: articlesList });
 });
 
-router.get("/changePublishmentState", (req, res) => {
+router.delete("/delete", async (req, res) => {
   const { id } = req.query;
-  const resSql = sql.query`SELECT * FROM article WHERE id === ${id}`;
-  return res.status(200).send(success);
+  sql.query(`DELETE FROM article WHERE id = '${id}'`, (err) => {
+    if (err)
+      res
+        .status(400)
+        .send({ success: false, des: "عملیات امکان پذیر نمی باشد!" });
+    return res.status(200).send({ success: true, des: "با موفقیت حذف شد!" });
+  });
 });
 
 router.get("/search", checkToken, async (req, res) => {
