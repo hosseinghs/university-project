@@ -32,10 +32,16 @@
           </v-col>
         </v-row>
       </v-col>
-      <section>
+
+      <section class="px-3">
         <div v-if="articles.length > 0">
-          <v-row v-for="article in articles" :key="article.id">
-            <v-col cols="12" lg="6">
+          <v-row>
+            <v-col
+              v-for="article in articles"
+              :key="article.id"
+              cols="12"
+              lg="6"
+            >
               <AdminArticle
                 :item="article"
                 @editArticle="openEditModal($event)"
