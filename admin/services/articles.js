@@ -5,7 +5,7 @@ export function createArticleApi(api, article) {
 }
 
 export function editArticleApi(api, article) {
-  return api.$put(baseUrl + '/create', article)
+  return api.$put(baseUrl + '/edit', article)
 }
 
 export function getCategoryApi(api) {
