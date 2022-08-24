@@ -49,7 +49,7 @@
             </v-col>
           </v-row>
         </div>
-        <div class="text-center mt-10">
+        <div v-else class="text-center mt-10">
           <div class="mb-2">
             <v-img
               cover
