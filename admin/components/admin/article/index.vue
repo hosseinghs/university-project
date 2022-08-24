@@ -29,15 +29,18 @@
           <v-icon dark> mdi-upload</v-icon>
         </v-btn>
       </UiTooltip>
+
       <UiTooltip text="ویرایش">
         <span>
-          <v-btn
-            class="mx-2"
-            fab
-            small
-            @click.stop="$emit('editArticle', item)"
-          >
+          <v-btn class="mx-2" fab small @click.stop="$emit('edit', item)">
             <v-icon dark> mdi-pen</v-icon>
+          </v-btn>
+        </span>
+      </UiTooltip>
+      <UiTooltip text="حذف">
+        <span>
+          <v-btn class="mx-2" fab small @click.stop="$emit('delete', item)">
+            <v-icon dark> mdi-close</v-icon>
           </v-btn>
         </span>
       </UiTooltip>
@@ -69,20 +72,6 @@ export default {
     faDate,
     ...mapActions('warningGenerator', ['generateWarning']),
     ...mapActions('article', ['changeArticlePublishmentState']),
-
-    generateWarningConfig(article) {
-      this.selectedArticle = article
-      const _title = article.isPublished
-        ? 'خارج کردن پست از حالت انتشار'
-        : 'منتشر کردن پست'
-      const color = article.isPublished ? 'red' : 'primary'
-      const config = {
-        color,
-        title: _title + ' ' + article.title,
-        text: 'آیا عملیات مورد تایید است؟',
-      }
-      this.generateWarning(config)
-    },
   },
 }
 </script>
