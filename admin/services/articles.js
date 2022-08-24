@@ -16,6 +16,6 @@ export function getArticlesApi(api, queries) {
   return api.$get(baseUrl + `/get?${queries}`)
 }
 
-export function changeArticlePublishmentStateApi(api, id) {
-  return api.$put(baseUrl + `/changePublishmentState?id=${id}`)
+export function deleteArticleApi(api, id) {
+  return api.$delete(baseUrl + `/delete?id=${id}`)
 }
