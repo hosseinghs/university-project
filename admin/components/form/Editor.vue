@@ -1,11 +1,7 @@
 <template>
-  <ckeditor
-    :id="id"
-    v-bind="$attrs"
-    :editor="classicEditor"
-    :config="editorConfig"
-    v-on="$listeners"
-  />
+  <div>
+    <ckeditor :id="id" :value="value" :editor="classicEditor" :config="editorConfig" />
+  </div>
 </template>
 
 <script>
