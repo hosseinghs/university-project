@@ -43,7 +43,7 @@ export default {
       addToArr(list, articles)
     },
     ADD_ARTICLE_TO_THE_LIST(state, newArticle) {
-      state.articles.push(newArticle)
+      state.articles.unshift(newArticle)
     },
     CLEAR_ARTICLE_STATE(state) {
       state.article = new Article()
