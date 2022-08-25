@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <v-row class="m">
     <v-col cols="11" md="10" lg="6" xl="4" class="mx-auto">
       <v-card class="px-4 py-4 mx-auto" max-width="700">
         <v-form ref="login" @submit.prevent="submitForm()">
@@ -59,7 +59,7 @@ import {
 
 export default {
   name: 'LoginPage',
-  
+
   layout: 'register',
 
   data() {
@@ -87,9 +87,15 @@ export default {
     async submitForm() {
       if (this.$refs.login.validate()) {
         const res = await this.signupUser();
-        if (res) this.$router.push({ path: '/Login' })
+        if (res) this.$router.push({ path: '/Login' });
       }
     },
   },
 };
 </script>
+
+<style scoped>
+.m {
+  margin-top: 150px;
+}
+</style>
