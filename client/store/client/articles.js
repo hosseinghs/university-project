@@ -42,6 +42,7 @@ export default {
     },
 
     SET_SEARCHED_ARTICLES(state, v) {
+      console.log(v);
       const list = state.searchedArticles;
       list.splice(0);
       addToArr(list, v);
@@ -104,7 +105,7 @@ export default {
     async search({ commit }, v) {
       async function apiCall(api) {
         const { success, res } = await searchApi(api, v);
-        if (success && res.length > 0) commit('SET_SEARCHED_ARTICLES', res);
+        if (success && res) commit('SET_SEARCHED_ARTICLES', res);
         return success;
       }
       return await this.$apiCaller(apiCall)();
