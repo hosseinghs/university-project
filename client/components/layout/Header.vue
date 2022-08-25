@@ -27,6 +27,13 @@
           hide-details
           @input="lazyCaller(() => getSearchedVal($event), 500)"
         />
+        <div v-if="searchedArticles.length > 0">
+          <v-row>
+            <v-col v-for="art in searchedArticles" :key="art.id">
+              {{ art.name }}
+            </v-col>
+          </v-row>
+        </div>
       </v-col>
 
       <v-col cols="auto" lg="4" class="text-end">
@@ -47,7 +54,7 @@ export default {
   mixins: [lazyCaller],
 
   computed: {
-    ...mapState('client/articles', ['categories']),
+    ...mapState('client/articles', ['categories', 'searchedArticles']),
     userName() {
       const user = JSON.parse(window.localStorage.getItem('user'));
       return user.fullName;
@@ -72,7 +79,6 @@ export default {
     },
 
     getSearchedVal(v) {
-      console.log(v);
       if (!v || v.trim().length === 0) return;
       this.search(v);
     },
