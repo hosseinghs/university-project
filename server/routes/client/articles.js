@@ -55,9 +55,16 @@ router.get("/getArticelsWithCategory", checkToken, async (req, res) => {
 });
 
 router.get("/search", checkToken, async (req, res) => {
-  const { query, start, end } = req.query;
-  console.log(query, start, end);
-  return res.status(200).send({ res: [] });
+  const { query } = req.query;
+  if (!query || query.trim().length === 0)
+    return res.status(400).send({ success: false, des: "عملیات مجاز نیست!" });
+
+  const sqlRes = await sql.query(
+    `SELECT * FROM article WHERE title = '${query}' OR text = '${query}' OR author = '${query}'`
+  );
+
+  const searchedArticles = sqlRes.recordset[0];
+  return res.status(200).send({ res: searchedArticles, success: true });
 });
 
 module.exports = router;
