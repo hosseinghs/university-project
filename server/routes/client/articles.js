@@ -51,7 +51,6 @@ router.get("/getArticelsWithCategory", checkToken, async (req, res) => {
   return res.status(200).send({
     res: _res,
     success: true,
-    des: "مشکلی پیش آمده است! مجددا تلاش کنید",
   });
 });
 
