@@ -25,6 +25,7 @@
           label="جستجو"
           dense
           hide-details
+          @input="lazyCaller(() => getSearchedVal($event), 500)"
         />
       </v-col>
 
@@ -40,8 +41,11 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
+import lazyCaller from '~/mixins/lazyCaller';
 
 export default {
+  mixins: [lazyCaller],
+
   computed: {
     ...mapState('client/articles', ['categories']),
     userName() {
@@ -55,7 +59,7 @@ export default {
   },
 
   methods: {
-    ...mapActions('client/articles', ['getCategories']),
+    ...mapActions('client/articles', ['getCategories', 'search']),
 
     getCategoryArticles(id) {
       if (!id) return;
@@ -65,6 +69,12 @@ export default {
         name: 'articles-category-slug',
         params: { slug: category.name, id: category.id },
       });
+    },
+
+    getSearchedVal(v) {
+      console.log(v);
+      if (!v || v.trim().length === 0) return;
+      this.search(v);
     },
 
     logout() {
