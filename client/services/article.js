@@ -19,3 +19,7 @@ export function getLatestArticlesApi(api) {
 export function getArticelsWithCategoryWithCategoryIdApi(api, id) {
   return api.$get(baseUrl + '/getArticelsWithCategory?category=' + id);
 }
+
+export function searchApi(api, query) {
+  return api.$get(baseUrl + '/search?' + query);
+}
