@@ -39,7 +39,9 @@
             ثبت نام
           </FormBtnPrime>
         </v-form>
-        <nuxt-link to="/login">ثبت نام کرده اید؟وارد شوید!</nuxt-link>
+        <v-col class="text-center">
+          <nuxt-link to="/login">ثبت نام کرده اید؟وارد شوید! </nuxt-link>
+        </v-col>
       </v-card>
     </v-col>
   </v-row>
@@ -57,7 +59,9 @@ import {
 
 export default {
   name: 'LoginPage',
+  
   layout: 'register',
+
   data() {
     return {
       icons: {
@@ -68,19 +72,22 @@ export default {
       showPassword: false,
     };
   },
+
   computed: {
     ...mapState('register', ['isLoggedIn']),
   },
+
   methods: {
     mustFillRule,
     mobileLengthRule,
     PhoneNumberRule,
     emailFormatRule,
     ...mapActions('register', ['signupUser', 'setUserRegisterData']),
+
     async submitForm() {
       if (this.$refs.login.validate()) {
         const res = await this.signupUser();
-        // if (res) this.$router.push({ path: '/admin/articles' })
+        if (res) this.$router.push({ path: '/Login' })
       }
     },
   },
