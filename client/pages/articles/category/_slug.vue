@@ -10,11 +10,17 @@
         <v-divider class="mt-5"></v-divider>
       </div>
 
-      <v-row class="articles">
+      <v-row v-if="articles.length > 0" class="articles">
         <v-col v-for="article in articles" :key="article.id" cols="12" lg="6">
           <ArticleCard />
         </v-col>
       </v-row>
+      <v-col v-else>
+        <div class="text-center">
+          <v-img cover width="400" class="mx-auto" :src="require('~/assets/img/empty.svg')" />
+          <div class="mt-2"> داده ای موجود نمی باشد </div>
+        </div>
+      </v-col>
     </v-container>
   </v-card>
 </template>
@@ -26,6 +32,7 @@ export default {
   computed: {
     ...mapState('client/articles', ['articles']),
   },
+
   created() {
     const articleId = this.$route.params.id;
     this.getArticelsWithCategoryWithCategoryId(articleId);
