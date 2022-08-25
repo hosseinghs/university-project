@@ -21,5 +21,5 @@ export function getArticelsWithCategoryWithCategoryIdApi(api, id) {
 }
 
 export function searchApi(api, query) {
-  return api.$get(baseUrl + '/search?' + query);
+  return api.$get(baseUrl + '/search?query=' + query);
 }
