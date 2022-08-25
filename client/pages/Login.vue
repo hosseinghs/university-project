@@ -1,9 +1,9 @@
 <template>
-  <v-row>
+  <v-row class="m">
     <v-col cols="11" md="10" lg="6" xl="4" class="mx-auto">
       <v-card class="px-4 py-4 mx-auto">
         <v-form ref="login" @submit.prevent="submitForm()">
-          <h2>به ادمین خوش آمدید!</h2>
+          <h2>خوش آمدید!</h2>
           <h5>برای ادامه وارد شوید</h5>
           <v-divider class="mt-2 mb-5"></v-divider>
           <v-row>
@@ -43,7 +43,9 @@ import {
 
 export default {
   name: 'LoginPage',
+
   layout: 'register',
+
   data() {
     return {
       icons: {
@@ -54,9 +56,11 @@ export default {
       showPassword: false,
     };
   },
+
   computed: {
     ...mapState('register', ['isLoggedIn']),
   },
+
   methods: {
     mustFillRule,
     mobileLengthRule,
@@ -71,3 +75,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+.m {
+  margin-top: 150px;
+}
+</style>
