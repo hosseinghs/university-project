@@ -42,7 +42,6 @@ export default {
     },
 
     SET_SEARCHED_ARTICLES(state, v) {
-      console.log(v);
       const list = state.searchedArticles;
       list.splice(0);
       addToArr(list, v);
