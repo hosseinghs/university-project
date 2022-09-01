@@ -14,20 +14,24 @@
           </v-card>
         </v-col>
         <v-col cols="12" lg="4">
-          <v-row>
-            <v-col
-              v-for="{ id, text, author, title } in articles"
-              :key="id"
-              cols="12"
-            >
-              <ArticleCard
-                :id="id"
-                :text="text"
-                :author="author"
-                :title="title"
-              />
-            </v-col>
-          </v-row>
+          <v-card class="px-4 py-4" elevation="0">
+            <h4>تازه ترین ها</h4>
+            <v-divider class="mb-4" />
+            <v-row>
+              <v-col
+                v-for="{ id, text, author, title } in articles"
+                :key="id"
+                cols="12"
+              >
+                <ArticleCard
+                  :id="id"
+                  :text="text"
+                  :author="author"
+                  :title="title"
+                />
+              </v-col>
+            </v-row>
+          </v-card>
         </v-col>
       </v-row>
     </v-container>
