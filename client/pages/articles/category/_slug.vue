@@ -12,13 +12,23 @@
 
       <v-row v-if="articles.length > 0" class="articles">
         <v-col v-for="article in articles" :key="article.id" cols="12" lg="6">
-          <ArticleCard />
+          <ArticleCard
+            :id="article.id"
+            :title="article.title"
+            :text="article.text"
+            :author="article.author"
+          />
         </v-col>
       </v-row>
       <v-col v-else>
         <div class="text-center">
-          <v-img cover width="400" class="mx-auto" :src="require('~/assets/img/empty.svg')" />
-          <div class="mt-2"> داده ای موجود نمی باشد </div>
+          <v-img
+            cover
+            width="400"
+            class="mx-auto"
+            :src="require('~/assets/img/empty.svg')"
+          />
+          <div class="mt-2">داده ای موجود نمی باشد</div>
         </div>
       </v-col>
     </v-container>
