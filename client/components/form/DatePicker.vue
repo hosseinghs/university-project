@@ -2,11 +2,10 @@
   <div>
     <v-text-field
       v-bind="$attrs"
-      color="#C89A67"
+      color="#9e2558"
       :value="dateValue"
       clearable
       outlined
-      dense
       append-icon="mdi-calendar"
       @click.stop="show = true"
       @click:clear="$emit('clearDate')"
@@ -73,6 +72,7 @@ export default {
   watch: {
     date(val) {
       let date = val;
+      console.log(val);
       if (this.isRange) {
         date = {
           startDate: date[0],
