@@ -25,15 +25,9 @@
           label="جستجو"
           dense
           hide-details
-          @input="lazyCaller(() => getSearchedVal($event), 500)"
+          clearable
+          @keyup="lazyCaller(() => getSearchedVal($event.target.value), 500)"
         />
-        <div v-if="searchedArticles.length > 0">
-          <v-row>
-            <v-col v-for="art in searchedArticles" :key="art.id">
-              {{ art.name }}
-            </v-col>
-          </v-row>
-        </div>
       </v-col>
 
       <v-col cols="auto" lg="4" class="text-end">
