@@ -46,7 +46,6 @@
 
             <v-col>
               <FormEditor
-                :id="isEdit ? 'edit' : 'add'"
                 :value="article.htmlContent"
                 @input="
                   setNewArticleData({
