@@ -26,7 +26,8 @@
           dense
           hide-details
           clearable
-          @keyup="lazyCaller(() => getSearchedVal($event.target.value), 500)"
+          @input="lazyCaller(() => getSearchedVal($event), 500)"
+          @click:clear="getSearchedVal('')"
         />
       </v-col>
 
@@ -73,7 +74,6 @@ export default {
     },
 
     getSearchedVal(v) {
-      if (!v || v.trim().length === 0) return;
       this.search(v);
     },
 

@@ -56,13 +56,15 @@ router.get("/getArticelsWithCategory", checkToken, async (req, res) => {
 
 router.get("/search", checkToken, async (req, res) => {
   const { query } = req.query;
-  if (!query || query.trim().length === 0)
-    return res.status(400).send({ success: false, des: "عملیات مجاز نیست!" });
+  const sqlQuery = query
+    ? `SELECT * FROM article WHERE title LIKE '%${query}%' OR author LIKE '%${query}%' OR text LIKE '%${query}%'`
+    : "SELECT * FROM article";
 
-  const sqlRes = await sql.query(
-    `SELECT * FROM article WHERE title LIKE '%${query}%' OR author LIKE '%${query}%' OR text LIKE '%${query}%' `
-  );
-  const searchedArticles = sqlRes.recordset[0];
+  const sqlRes = await sql.query(sqlQuery);
+  console.log(sqlRes);
+  const searchedArticles = sqlRes.recordset;
+
+  console.log(searchedArticles);
   return res.status(200).send({ res: searchedArticles, success: true });
 });
 

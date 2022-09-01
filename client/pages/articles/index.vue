@@ -1,17 +1,20 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col
-        v-for="{ text, author, title, id } in articles"
-        :key="id"
-        cols="12"
-        sm="6"
-        md="3"
-        lg="4"
-      >
-        <ArticleCard :id="id" :text="text" :author="author" :title="title" />
-      </v-col>
-    </v-row>
+    <div v-if="articles.length > 0">
+      <v-row>
+        <v-col
+          v-for="{ text, author, title, id } in articles"
+          :key="id"
+          cols="12"
+          sm="6"
+          md="3"
+          lg="4"
+        >
+          <ArticleCard :id="id" :text="text" :author="author" :title="title" />
+        </v-col>
+      </v-row>
+    </div>
+    <div v-else>مقاله ای یافت نشد!</div>
   </v-container>
 </template>
 
