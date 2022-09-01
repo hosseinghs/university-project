@@ -26,7 +26,6 @@
             :rules="[mustFillRule, mobileLengthRule, PhoneNumberRule]"
             @change="setUserRegisterData({ k: 'phoneNumber', v: $event })"
           />
-          <FormText label="تاریخ تولد" />
           <FormText
             label="رمزعبور"
             :rules="[mustFillRule]"
