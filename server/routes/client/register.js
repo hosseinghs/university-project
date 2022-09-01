@@ -18,13 +18,12 @@ router.post("/newUser", async (req, res) => {
     return res
       .status(400)
       .send({ success: false, des: "ایمیل تکراری است! وارد شوید!" });
-
   await sql.query`INSERT INTO users ( firstName , lastName , email , phoneNumber , birthDate , joinedAt , password ) VALUES (${firstName},${lastName},${email},${phoneNumber},${birthDate},${new Date().toISOString()},${password})`,
-    (err, res) => {
-      if (err) res.status(400).send({ success: false, des: err });
+    (err) => {
+      if (err) return res.status(400).send({ success: false, des: err });
       return res
         .status(200)
-        .send({ success, des: "ثبت نام با موفقیت انجام شد!" });
+        .send({ success: true, des: "ثبت نام با موفقیت انجام شد!" });
     };
 });
 
