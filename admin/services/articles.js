@@ -26,6 +26,6 @@ export function changePublishmentStateApi(api, { id, isPublished }) {
   )
 }
 
-export function addNewCategoryApi(api, tag) {
-  return api.$post(baseUrl + '/new-category', tag)
+export function addNewCategoryApi(api, category) {
+  return api.$post(baseUrl + '/new-category', category)
 }
