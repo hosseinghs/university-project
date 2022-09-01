@@ -15,7 +15,6 @@ export default {
   state: () => ({
     categories: [],
     articles: [],
-    searchedArticles: [],
     article: new Article(),
     queries: new Queries(),
   }),
@@ -39,12 +38,6 @@ export default {
 
     UPDATE_QUERIES(state, { k, v }) {
       state[k] = v;
-    },
-
-    SET_SEARCHED_ARTICLES(state, v) {
-      const list = state.searchedArticles;
-      list.splice(0);
-      addToArr(list, v);
     },
   },
 
@@ -104,7 +97,7 @@ export default {
     async search({ commit }, v) {
       async function apiCall(api) {
         const { success, res } = await searchApi(api, v);
-        if (success && res) commit('SET_SEARCHED_ARTICLES', res);
+        if (success && res) commit('SET_ARTICLES', res);
         return success;
       }
       return await this.$apiCaller(apiCall)();
