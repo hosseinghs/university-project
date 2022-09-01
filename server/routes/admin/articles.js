@@ -11,17 +11,27 @@ router.get("/category", checkToken, async (_, res) => {
 
 router.post("/create", checkToken, async (req, res) => {
   const { title, categoryId, author, text, htmlContent } = req.body;
-
   sql.query(
     `INSERT INTO article (title, categoryId, author, text, isPublished, htmlContent, img)
          VALUES ('${title}', '${categoryId}', '${author}', '${text}', '${true}' , '${htmlContent}' , '${null}');`,
     (err) => {
-      if (err) res.status(400).send({ success: false, des: err });
+      console.log(err);
+      if (err) return res.status(400).send({ success: false, des: err });
       return res
         .status(200)
         .send({ success: true, des: "با موفقیت افزوده شد!" });
     }
   );
+});
+
+router.post("/new-category", checkToken, async (req, res) => {
+  const { cat } = req.body;
+  sql.query(`INSERT INTO category (name) VALUES ('${cat}')`, (err) => {
+    if (err)
+      return res.status(400).send({ success: false, des: " عملیات ناموفق" });
+
+    return res.status(200).send({ success: true, des: "با موفقیت اضافه شد!" });
+  });
 });
 
 router.put("/edit", checkToken, async (req, res) => {
