@@ -50,7 +50,10 @@ export default {
       addToArr(list, articles)
     },
     ADD_ARTICLE_TO_THE_LIST(state, newArticle) {
-      state.articles.unshift(newArticle)
+      state.articles.unshift({
+        ...newArticle,
+        createdDate: new Date().toUTCString(),
+      })
     },
     CLEAR_ARTICLE_STATE(state) {
       state.article = new Article()
@@ -80,9 +83,9 @@ export default {
       article.isPublished = !article.isPublished
     },
 
-    ADD_NEW_CATEGORY_TO_LIST(state,tag){
+    ADD_NEW_CATEGORY_TO_LIST(state, tag) {
       state.categories.unshift(tag)
-    }
+    },
   },
   actions: {
     clearArticle({ commit }) {
