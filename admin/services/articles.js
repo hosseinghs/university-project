@@ -25,3 +25,7 @@ export function changePublishmentStateApi(api, { id, isPublished }) {
     baseUrl + `/changePublishmentState?id=${id}&isPublished=${isPublished}`
   )
 }
+
+export function addNewCategoryApi(api, tag) {
+  return api.$post(baseUrl + '/new-category', tag)
+}
