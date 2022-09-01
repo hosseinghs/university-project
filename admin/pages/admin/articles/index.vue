@@ -140,7 +140,7 @@ export default {
 
     async addCategory(cat) {
       if (cat && cat.trim().length > 1) {
-        const res = await this.addNewCategory(cat)
+        const res = await this.addNewCategory({ cat })
         if (res) {
           this.newCategory = ''
           this.setModalState(false)
