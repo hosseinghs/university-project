@@ -1,6 +1,13 @@
 <template>
   <div>
-    <ckeditor :id="id" :value="value" :editor="classicEditor" :config="editorConfig" />
+    <span v-if="label" class="label">{{ label }}</span>
+    <ckeditor
+      :id="id"
+      v-bind="$attrs"
+      :editor="classicEditor"
+      :config="editorConfig"
+      v-on="$listeners"
+    />
   </div>
 </template>
 
@@ -15,22 +22,19 @@ if (process.client) {
 }
 export default {
   name: 'CKEditorComponent',
-
   components: {
     ckeditor: CKEditor.component,
   },
-
   props: {
     id: {
       type: String,
       default: 'editor',
     },
-    value: {
+    label: {
       type: String,
       default: '',
     },
   },
-
   data() {
     return {
       classicEditor: ClassicEditor,
@@ -43,7 +47,6 @@ export default {
       editorElement: null,
     }
   },
-
   methods: {
     insertTextAtTheEnd(text) {
       function findCorrectPosition(htmlStr) {
