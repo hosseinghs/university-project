@@ -60,9 +60,8 @@ router.get("/search", checkToken, async (req, res) => {
     return res.status(400).send({ success: false, des: "عملیات مجاز نیست!" });
 
   const sqlRes = await sql.query(
-    `SELECT * FROM article WHERE title = '${query}' OR text = '${query}' OR author = '${query}'`
+    `SELECT * FROM article WHERE title LIKE '%${query}%' OR author LIKE '%${query}%' OR text LIKE '%${query}%' `
   );
-
   const searchedArticles = sqlRes.recordset[0];
   return res.status(200).send({ res: searchedArticles, success: true });
 });
