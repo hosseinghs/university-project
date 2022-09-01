@@ -26,7 +26,23 @@
             />
           </v-col>
           <v-col class="text-end">
-            <FormBtnPrime class="t-white" @click.stop="setModalState(true)">
+            <FormBtnPrime
+              outlined
+              @click.stop="
+                isCategory = true
+                setModalState(true)
+              "
+            >
+              افزودن دسته بندی جدید
+            </FormBtnPrime>
+
+            <FormBtnPrime
+              class="t-white"
+              @click.stop="
+                isCategory = false
+                setModalState(true)
+              "
+            >
               افزودن مقاله جدید
             </FormBtnPrime>
           </v-col>
@@ -66,8 +82,22 @@
         </div>
       </section>
     </v-card>
-    <UiModal full-screen :title="isEdit ? 'ویرایش مقاله' : 'افزودن مقاله جدید'">
-      <AdminArticleAdd :is-edit="isEdit" />
+    <UiModal
+      :full-screen="!isCategory"
+      :title="isEdit ? 'ویرایش مقاله' : 'افزودن مقاله جدید'"
+    >
+      <AdminArticleAdd v-if="!isCategory" :is-edit="isEdit" />
+      <v-form v-else class="px-8 py-8" @submit.prevent="submitCategoryForm()">
+        <FormText
+          label="دسته بندی جدید"
+          :value="newCategory"
+          @keyup.enter="addCategory($event.target.value)"
+        />
+
+        <div class="mt-4 text-end">
+          <FormBtnPrime class="t-white" type="submit">افزودن</FormBtnPrime>
+        </div>
+      </v-form>
     </UiModal>
     <UiWarning @submitActionClicked="deleteArticleFunc(articleId)" />
   </v-container>
@@ -82,6 +112,8 @@ export default {
     return {
       isEdit: false,
       articleId: null,
+      isCategory: false,
+      newCategory: '',
     }
   },
 
@@ -102,8 +134,25 @@ export default {
       'getCategories',
       'updateQueries',
       'deleteArticle',
+      'addNewCategory',
       'changePublishmentState',
     ]),
+
+    async addCategory(cat) {
+      if (cat && cat.trim().length > 1) {
+        const res = await this.addNewCategory(cat)
+        if (res) {
+          this.newCategory = ''
+          this.setModalState(false)
+        }
+      }
+    },
+
+    submitCategoryForm() {
+      if (this.$refs.categoryForm) {
+        this.addCategory()
+      }
+    },
 
     generateDeleteWarning({ id }) {
       this.articleId = id
