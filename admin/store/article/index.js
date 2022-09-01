@@ -5,6 +5,7 @@ import {
 } from '~/utils/general'
 import { Article, Queries } from '~/models/article'
 import {
+  addNewCategoryApi,
   getCategoryApi,
   getArticlesApi,
   editArticleApi,
@@ -78,6 +79,10 @@ export default {
       const article = list.find((art) => art.id === id)
       article.isPublished = !article.isPublished
     },
+
+    ADD_NEW_CATEGORY_TO_LIST(state,tag){
+      state.categories.unshift(tag)
+    }
   },
   actions: {
     clearArticle({ commit }) {
@@ -120,6 +125,15 @@ export default {
       async function apiCall(api) {
         const { success } = await createArticleApi(api, article)
         if (success) commit('ADD_ARTICLE_TO_THE_LIST', article)
+        return success
+      }
+      return await this.$apiCaller(apiCall)()
+    },
+
+    async addNewCategory({ commit }, category) {
+      async function apiCall(api) {
+        const { success } = await addNewCategoryApi(api, category)
+        if (success) commit('ADD_NEW_CATEGORY_TO_LIST', category)
         return success
       }
       return await this.$apiCaller(apiCall)()
