@@ -5,12 +5,14 @@
         <v-col cols="12" lg="8">
           <v-card class="rounded-lg" elevation="2">
             <v-card-title class="title">{{ article.title }}</v-card-title>
+            <v-card-subtitle class="subtitle mt-1">{{
+              article.text
+            }}</v-card-subtitle>
+
             <v-card-text>
-              <p>
-                <span class="author">{{ article.author }}</span>
-              </p>
+              <span class="author">نوشته شده توسط: {{ article.author }}</span>
             </v-card-text>
-            <v-card-text v-html="article.text"></v-card-text>
+            <v-card-text v-html="article.htmlContent"></v-card-text>
           </v-card>
         </v-col>
         <v-col cols="12" lg="4">
@@ -69,7 +71,7 @@ export default {
 }
 .author {
   margin-left: auto;
-  font-weight: 700;
+  font-size: 12px;
   color: #4d4d4d;
 }
 </style>
